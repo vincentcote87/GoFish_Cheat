@@ -1,0 +1,115 @@
+#include <vector>
+#include <algorithm>
+#include "../include/StandardDeck.h"
+#include "../include/EmptyDeckException.h"
+#include "../include/OutOfBoundsException.h"
+#include "../include/CardAlreadyInDeckException.h"
+
+const std::vector<CardSuite> all_suites { CardSuite::CLUB, CardSuite::DIAMOND, CardSuite::HEART, CardSuite::SPADE };
+
+const std::vector<CardValue> all_card_values { CardValue::ACE, CardValue::TWO, CardValue::THREE,
+          CardValue::FOUR, CardValue::FIVE, CardValue::SIX, CardValue::SEVEN, CardValue::EIGHT,
+          CardValue::NINE, CardValue::TEN, CardValue::JACK, CardValue::QUEEN, CardValue::KING };
+
+StandardDeck::StandardDeck():_cardList(std::deque<std::shared_ptr<StandardCard>>())
+{
+    for (CardSuite suite : all_suites)
+    {
+        for (CardValue value : all_card_values)
+        {
+            pushTop(std::shared_ptr<StandardCard>(new StandardCard(suite, value)));
+        }
+    }
+}
+
+StandardDeck::~StandardDeck()
+{
+    this->_cardList.clear();
+}
+
+void StandardDeck::shuffle()
+{
+    if (isEmpty())
+    {
+        throw EmptyDeckException();
+    }
+
+    std::random_shuffle(_cardList.begin(), _cardList.end());
+}
+
+bool StandardDeck::isEmpty() const
+{
+    return this->_cardList.empty();
+}
+
+unsigned int StandardDeck::getCount() const
+{
+    return static_cast<unsigned int>(this->_cardList.size());
+}
+
+bool StandardDeck::isCardInDeck(std::shared_ptr<StandardCard> card) const
+{
+    if (isEmpty())
+    {
+        return false;
+    }
+
+    for (unsigned int i = 0; i < getCount(); i++)
+    {
+        const std::shared_ptr<StandardCard> deckCard = peek(i);
+
+        if (*card == *deckCard)
+            return true;
+    }
+
+    return false;
+}
+
+void StandardDeck::pushTop(std::shared_ptr<StandardCard> card)
+{
+    if (isCardInDeck(card))
+    {
+        throw CardAlreadyInDeckException();
+    }
+
+    this->_cardList.push_back(card);
+}
+
+std::shared_ptr<StandardCard> StandardDeck::popTop()
+{
+    if (isEmpty())
+    {
+        throw EmptyDeckException();
+    }
+
+    std::shared_ptr<StandardCard> top = this->_cardList.back();
+
+    this->_cardList.pop_back();
+
+    return top;
+}
+
+std::shared_ptr<StandardCard> StandardDeck::peekTop() const
+{
+    if (isEmpty())
+    {
+        throw EmptyDeckException();
+    }
+
+    return this->_cardList.back();
+}
+
+std::shared_ptr<StandardCard> StandardDeck::peek(unsigned int index) const
+{
+    if (isEmpty())
+    {
+        throw EmptyDeckException();
+    }
+
+    if (index >= getCount())
+    {
+        throw OutOfBoundsException(index, 0, getCount());
+    }
+
+    return this->_cardList[index];
+}
