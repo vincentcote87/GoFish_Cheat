@@ -90,7 +90,7 @@ void GoFishController::deal()
     {
         for (unsigned int i = 0; i < cardCount; i++)
         {
-            (*it)->getHand()->add(this->_deck->popTop());
+            (*it)->getHand()->addCard(this->_deck->popTop());
         }
     }
 }
@@ -241,13 +241,13 @@ void GoFishController::playerTurn(shared_ptr<StandardPlayer> player)
 
     shared_ptr<StandardCard> card = getCard(suit, value);
 
-    if (askedPlayer->getHand()->contains(card))
+    if (askedPlayer->getHand()->containsCard(card))
     {
         this->_view->playerHasA(true);
 
-        askedPlayer->getHand()->remove(card);
+        askedPlayer->getHand()->removeCard(card);
 
-        player->getHand()->add(card);
+        player->getHand()->addCard(card);
     }
     else
     {
@@ -261,7 +261,7 @@ void GoFishController::playerTurn(shared_ptr<StandardPlayer> player)
         {
             this->_view->drawCard();
 
-            player->getHand()->add(this->_deck->popTop());
+            player->getHand()->addCard(this->_deck->popTop());
         }
     }
 

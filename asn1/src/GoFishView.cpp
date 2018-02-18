@@ -51,7 +51,7 @@ void GoFishView::showHand(shared_ptr<StandardHand> hand)
 
     for (unsigned int i = 0; i < count; ++i)
     {
-        shared_ptr<StandardCard> card = hand->get(i);
+        shared_ptr<StandardCard> card = hand->getCard(i);
 
         printCard(card);
 

@@ -25,7 +25,7 @@ unsigned int StandardHand::getCount() const
     return this->_cardList.size();
 }
 
-shared_ptr<StandardCard> StandardHand::add(shared_ptr<StandardCard> card)
+shared_ptr<StandardCard> StandardHand::addCard(shared_ptr<StandardCard> card)
 {
     if (isCardInHand(card))
     {
@@ -37,7 +37,7 @@ shared_ptr<StandardCard> StandardHand::add(shared_ptr<StandardCard> card)
     return card;
 }
 
-shared_ptr<StandardCard> StandardHand::remove(unsigned int index)
+shared_ptr<StandardCard> StandardHand::removeCard(unsigned int index)
 {
     if (isEmpty())
     {
@@ -58,7 +58,7 @@ shared_ptr<StandardCard> StandardHand::remove(unsigned int index)
     return card;
 }
 
-shared_ptr<StandardCard> StandardHand::remove(shared_ptr<StandardCard> card)
+shared_ptr<StandardCard> StandardHand::removeCard(shared_ptr<StandardCard> card)
 {
     if (isEmpty())
     {
@@ -81,7 +81,7 @@ shared_ptr<StandardCard> StandardHand::remove(shared_ptr<StandardCard> card)
     throw ElementNotFoundException();
 }
 
-shared_ptr<StandardCard> StandardHand::get(unsigned int index) const
+shared_ptr<StandardCard> StandardHand::getCard(unsigned int index) const
 {
     if (isEmpty())
     {
@@ -98,7 +98,7 @@ shared_ptr<StandardCard> StandardHand::get(unsigned int index) const
     return this->_cardList[index];
 }
 
-shared_ptr<StandardCard> StandardHand::get(shared_ptr<StandardCard> card) const
+shared_ptr<StandardCard> StandardHand::getCard(shared_ptr<StandardCard> card) const
 {
     if (isEmpty())
     {
@@ -119,7 +119,7 @@ shared_ptr<StandardCard> StandardHand::get(shared_ptr<StandardCard> card) const
     throw ElementNotFoundException();
 }
 
-bool StandardHand::contains(shared_ptr<StandardCard> card) const
+bool StandardHand::containsCard(shared_ptr<StandardCard> card) const
 {
     return isCardInHand(card);
 }
@@ -133,7 +133,7 @@ bool StandardHand::isCardInHand(shared_ptr<StandardCard> card) const
 
     for (unsigned int i = 0; i < getCount(); i++)
     {
-        const shared_ptr<StandardCard> handCard = get(i);
+        const shared_ptr<StandardCard> handCard = getCard(i);
 
         if (*card == *handCard)
             return true;

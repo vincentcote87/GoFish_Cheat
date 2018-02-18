@@ -47,7 +47,7 @@ public:
      *
      * @throw CardAlreadyInHandException If <code>card</code> is already in the hand.
      */
-    virtual shared_ptr<StandardCard> add(shared_ptr<StandardCard> card);
+    virtual shared_ptr<StandardCard> addCard(shared_ptr<StandardCard> card);
 
     /**
      * Removes a card at index <code>index</code>.
@@ -59,7 +59,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw OutOfBoundsException If the <code>index</code> is out of range.
      */
-    virtual shared_ptr<StandardCard> remove(unsigned int index);
+    virtual shared_ptr<StandardCard> removeCard(unsigned int index);
 
     /**
      * Removes <code>card</code> from the hand.
@@ -71,7 +71,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw ElementNotFoundException If the card is not in the hand.
      */
-    virtual shared_ptr<StandardCard> remove(shared_ptr<StandardCard> card);
+    virtual shared_ptr<StandardCard> removeCard(shared_ptr<StandardCard> card);
 
     /**
      * Gets a card at index <code>index</code>.
@@ -83,7 +83,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw OutOfBoundsException If the <code>index</code> is out of range.
      */
-    virtual shared_ptr<StandardCard> get(unsigned int index) const;
+    virtual shared_ptr<StandardCard> getCard(unsigned int index) const;
 
     /**
      * Gets <code>card</code> from the hand.
@@ -96,7 +96,7 @@ public:
      * @throw ElementNotFoundException If <code>card</code> is not in the hand.
      *
      */
-    virtual shared_ptr<StandardCard> get(shared_ptr<StandardCard> card) const;
+    virtual shared_ptr<StandardCard> getCard(shared_ptr<StandardCard> card) const;
 
     /**
      * Determines if the hand contains <code>card</code>.
@@ -105,7 +105,7 @@ public:
      *
      * @return bool True if the hand contains the card, false if not.
      */
-    virtual bool contains(shared_ptr<StandardCard> card) const;
+    virtual bool containsCard(shared_ptr<StandardCard> card) const;
 protected:
     /**
      * Checks if a card is already in the hand.

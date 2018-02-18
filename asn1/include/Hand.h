@@ -36,7 +36,7 @@ public:
      *
      * @param card The card to add.
      */
-    virtual shared_ptr<TCard> add(shared_ptr<TCard> card) = 0;
+    virtual shared_ptr<TCard> addCard(shared_ptr<TCard> card) = 0;
 
     /**
      * Removes a card at index <code>index</code>.
@@ -48,7 +48,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw OutOfBoundsException If the <code>index</code> is out of range.
      */
-    virtual shared_ptr<TCard> remove(unsigned int index) = 0;
+    virtual shared_ptr<TCard> removeCard(unsigned int index) = 0;
 
     /**
      * Removes <code>card</code> from the hand.
@@ -60,7 +60,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw ElementNotFoundException If the card is not in the hand.
      */
-    virtual shared_ptr<TCard> remove(shared_ptr<TCard> card) = 0;
+    virtual shared_ptr<TCard> removeCard(shared_ptr<TCard> card) = 0;
 
     /**
      * Gets a card at index <code>index</code>.
@@ -72,7 +72,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw OutOfBoundsException If the <code>index</code> is out of range.
      */
-    virtual shared_ptr<TCard> get(unsigned int index) const = 0;
+    virtual shared_ptr<TCard> getCard(unsigned int index) const = 0;
 
     /**
      * Gets <code>card</code> from the hand.
@@ -85,7 +85,7 @@ public:
      * @throw ElementNotFoundException If <code>card</code> is not in the hand.
      *
      */
-    virtual shared_ptr<TCard> get(shared_ptr<TCard> card) const = 0;
+    virtual shared_ptr<TCard> getCard(shared_ptr<TCard> card) const = 0;
 
     /**
      * Determines if the hand contains <code>card</code>.
@@ -94,7 +94,7 @@ public:
      *
      * @return bool True if the hand contains the card, false if not.
      */
-    virtual bool contains(shared_ptr<TCard> card) const = 0;
+    virtual bool containsCard(shared_ptr<TCard> card) const = 0;
 };
 
 #endif // HAND_H_INCLUDED
