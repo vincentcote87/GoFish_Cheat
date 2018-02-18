@@ -6,7 +6,7 @@ StandardPlayerFactory::StandardPlayerFactory()
 
 }
 
-shared_ptr<StandardPlayer> StandardPlayerFactory::createPlayer(string name)
+shared_ptr<StandardPlayer> StandardPlayerFactory::createStandardPlayer(string name)
 {
     return shared_ptr<StandardPlayer>(new StandardPlayer(name));
 }

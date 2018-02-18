@@ -129,7 +129,7 @@ list<shared_ptr<StandardPlayer>> GoFishController::constructPlayers(
 
     for (list<string>::const_iterator it = names.cbegin(); it != names.cend(); ++it)
     {
-        shared_ptr<StandardPlayer> player = this->_standardPlayerFactory->createPlayer(*it);
+        shared_ptr<StandardPlayer> player = this->_standardPlayerFactory->createStandardPlayer(*it);
 
         players.push_back(player);
     }

@@ -12,7 +12,7 @@ class MockStandardPlayerFactory : public StandardPlayerFactory
 public:
     virtual ~MockStandardPlayerFactory() {}
 
-    MOCK_METHOD1(createPlayer, shared_ptr<StandardPlayer>(string));
+    MOCK_METHOD1(createStandardPlayer, shared_ptr<StandardPlayer>(string));
 };
 
 #endif // MOCKSTANDARDPLAYERFACTORY_H_INCLUDED
