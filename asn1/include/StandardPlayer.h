@@ -4,6 +4,9 @@
 #include "Player.h"
 #include "StandardHand.h"
 
+using std::string;
+using std::shared_ptr;
+
 /**
  * A class representing a standard player whose hand can contain standard cards.
  */
@@ -15,7 +18,7 @@ public:
      *
      * @name The name of the player.
      */
-    explicit StandardPlayer(const std::string& name);
+    explicit StandardPlayer(const string& name);
 
     /**
      * Virtual destructor.
@@ -27,24 +30,24 @@ public:
      *
      * @return A shared pointer to the hand.
      */
-    virtual std::shared_ptr<StandardHand> getHand();
+    virtual shared_ptr<StandardHand> getHand();
 
     /**
      * Gets the name of the player.
      *
      * @return A string containing the name of the player.
      */
-    virtual std::string getName() const;
+    virtual string getName() const;
 private:
     /**
      * The name of the player.
      */
-    const std::string _name;
+    const string _name;
 
     /**
      * A shared pointer to the hand of the player.
      */
-    std::shared_ptr<StandardHand> _hand;
+    shared_ptr<StandardHand> _hand;
 };
 
 #endif // STANDARDPLAYER_H_INCLUDED

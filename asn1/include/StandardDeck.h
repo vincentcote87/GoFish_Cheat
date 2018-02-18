@@ -5,6 +5,9 @@
 #include "Deck.h"
 #include "StandardCard.h"
 
+using std::deque;
+using std::shared_ptr;
+
 /**
  * A class representing a deck of cards using StandardCard. The deck cannot
  * contain multiple cards of the same type (as in same suite and value). This
@@ -59,7 +62,7 @@ public:
      * @throw CardAlreadyInDeckException Thrown if we try to add a
      *        card to the deck which is already in there.
      */
-    virtual void pushTop(std::shared_ptr<StandardCard> card);
+    virtual void pushTop(shared_ptr<StandardCard> card);
 
     /**
      * Draws a card from the top of a deck.
@@ -68,7 +71,7 @@ public:
      *
      * @throw EmptyDeckException If there are no cards available to be drawn.
      */
-    virtual std::shared_ptr<StandardCard> popTop();
+    virtual shared_ptr<StandardCard> popTop();
 
     /**
      * Peeks at the card from the top of a deck.
@@ -77,7 +80,7 @@ public:
      *
      * @throw EmptyDeckException If there are no cards in the deck.
      */
-    virtual std::shared_ptr<StandardCard> peekTop() const;
+    virtual shared_ptr<StandardCard> peekTop() const;
 
     /**
      * Peeks at a desired card from the deck, based on the card's index.
@@ -91,7 +94,7 @@ public:
      * @throw OutOfBoundsException If the deck is not empty, but the index is not in
      *        the range of the valid card indices.
      */
-    virtual std::shared_ptr<StandardCard> peek(unsigned int card) const;
+    virtual shared_ptr<StandardCard> peek(unsigned int card) const;
 protected:
     /**
      * Checks if a card is already in the deck.
@@ -100,9 +103,9 @@ protected:
      *
      * @return True if the card is already in the deck, false if not.
      */
-    virtual bool isCardInDeck(std::shared_ptr<StandardCard> card) const;
+    virtual bool isCardInDeck(shared_ptr<StandardCard> card) const;
 private:
-    std::deque<std::shared_ptr<StandardCard>> _cardList;
+    deque<shared_ptr<StandardCard>> _cardList;
 
     /**
      * Disables the copy constructor.

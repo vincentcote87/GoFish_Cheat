@@ -11,6 +11,10 @@
 #include "StandardPlayerFactory.h"
 #include "StandardDeckFactory.h"
 
+using std::list;
+using std::string;
+using std::shared_ptr;
+
 class GoFishController : public Controller
 {
 public:
@@ -18,12 +22,12 @@ public:
 
     virtual ~GoFishController();
 
-    virtual void setView(std::shared_ptr<GoFishView> view);
+    virtual void setView(shared_ptr<GoFishView> view);
 
-    virtual void setStandardPlayerFactory(std::shared_ptr<StandardPlayerFactory>
+    virtual void setStandardPlayerFactory(shared_ptr<StandardPlayerFactory>
         standardPlayerFactory);
 
-    virtual void setStandardDeckFactory(std::shared_ptr<StandardDeckFactory>
+    virtual void setStandardDeckFactory(shared_ptr<StandardDeckFactory>
         standardDeckFactory);
 
     virtual void play();
@@ -32,36 +36,36 @@ public:
 
     virtual void deal();
 
-    virtual std::list<std::string> requestNames() const;
+    virtual list<string> requestNames() const;
 
-    virtual std::list<std::shared_ptr<StandardPlayer>> constructPlayers(
-        std::list<std::string> names) const;
+    virtual list<shared_ptr<StandardPlayer>> constructPlayers(
+        list<string> names) const;
 
     virtual bool hasGameEnded() const;
 
-    virtual std::shared_ptr<StandardPlayer> getWinner();
+    virtual shared_ptr<StandardPlayer> getWinner();
 
-    virtual void playerTurn(std::shared_ptr<StandardPlayer> player);
+    virtual void playerTurn(shared_ptr<StandardPlayer> player);
 
-    virtual bool isValidPlayer(std::string currentPlayerName, std::string& name);
+    virtual bool isValidPlayer(string currentPlayerName, string& name);
 
-    std::shared_ptr<StandardCard> getCard(std::string& suite, std::string& value);
+    shared_ptr<StandardCard> getCard(string& suite, string& value);
 
-    virtual std::shared_ptr<StandardPlayer> getPlayer(std::string& name);
+    virtual shared_ptr<StandardPlayer> getPlayer(string& name);
 
-    virtual bool isValidSuite(std::string& suite);
+    virtual bool isValidSuite(string& suite);
 
-    virtual bool isValidValue(std::string& value);
+    virtual bool isValidValue(string& value);
 private:
-    std::shared_ptr<GoFishView> _view;
+    shared_ptr<GoFishView> _view;
 
-    std::shared_ptr<StandardPlayerFactory> _standardPlayerFactory;
+    shared_ptr<StandardPlayerFactory> _standardPlayerFactory;
 
-    std::shared_ptr<StandardDeckFactory> _standardDeckFactory;
+    shared_ptr<StandardDeckFactory> _standardDeckFactory;
 
-    std::list<std::shared_ptr<StandardPlayer>> _players;
+    list<shared_ptr<StandardPlayer>> _players;
 
-    std::shared_ptr<StandardDeck> _deck;
+    shared_ptr<StandardDeck> _deck;
 };
 
 #endif // GOFISHCONTROLLER_H_INCLUDED

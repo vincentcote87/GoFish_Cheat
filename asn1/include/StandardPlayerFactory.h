@@ -5,6 +5,9 @@
 #include <string>
 #include "StandardPlayer.h"
 
+using std::string;
+using std::shared_ptr;
+
 class StandardPlayerFactory
 {
 public:
@@ -12,7 +15,7 @@ public:
 
     virtual ~StandardPlayerFactory() {};
 
-    virtual std::shared_ptr<StandardPlayer> createPlayer(std::string name);
+    virtual shared_ptr<StandardPlayer> createPlayer(string name);
 };
 
 #endif // STANDARDPLAYERFACTORY_H_INCLUDED

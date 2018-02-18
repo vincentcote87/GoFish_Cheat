@@ -5,9 +5,13 @@
 #include "../include/CardSuite.h"
 #include "../include/CardValue.h"
 
-const std::vector<CardSuite> all_suites { CardSuite::CLUB, CardSuite::DIAMOND, CardSuite::HEART, CardSuite::SPADE };
+using std::vector;
+using std::unique_ptr;
+using std::shared_ptr;
 
-const std::vector<CardValue> all_card_values { CardValue::ACE, CardValue::TWO, CardValue::THREE,
+const vector<CardSuite> all_suites { CardSuite::CLUB, CardSuite::DIAMOND, CardSuite::HEART, CardSuite::SPADE };
+
+const vector<CardValue> all_card_values { CardValue::ACE, CardValue::TWO, CardValue::THREE,
           CardValue::FOUR, CardValue::FIVE, CardValue::SIX, CardValue::SEVEN, CardValue::EIGHT,
           CardValue::NINE, CardValue::TEN, CardValue::JACK, CardValue::QUEEN, CardValue::KING };
 
@@ -20,7 +24,7 @@ TEST(TestStandardCard, TestCardConstruction)
     {
         for (const CardValue value : all_card_values)
         {
-            std::unique_ptr<StandardCard> card(new StandardCard(suite, value));
+            unique_ptr<StandardCard> card(new StandardCard(suite, value));
 
             EXPECT_EQ(suite, card->getSuite());
             EXPECT_EQ(value, card->getValue());
@@ -36,8 +40,8 @@ TEST(TestStandardCard, TestCardConstruction)
  */
 TEST(TestStandardCard, TestSameCardsEqual)
 {
-    std::shared_ptr<StandardCard> card1(new StandardCard(CardSuite::CLUB, CardValue::ACE));
-    std::shared_ptr<StandardCard> card2(new StandardCard(CardSuite::CLUB, CardValue::ACE));
+    shared_ptr<StandardCard> card1(new StandardCard(CardSuite::CLUB, CardValue::ACE));
+    shared_ptr<StandardCard> card2(new StandardCard(CardSuite::CLUB, CardValue::ACE));
 
     ASSERT_EQ(*card1, *card2);
 }
@@ -48,8 +52,8 @@ TEST(TestStandardCard, TestSameCardsEqual)
  */
 TEST(TestStandardCard, TestSameCardsNotEqual1)
 {
-    std::shared_ptr<StandardCard> card1(new StandardCard(CardSuite::CLUB, CardValue::ACE));
-    std::shared_ptr<StandardCard> card2(new StandardCard(CardSuite::CLUB, CardValue::TWO));
+    shared_ptr<StandardCard> card1(new StandardCard(CardSuite::CLUB, CardValue::ACE));
+    shared_ptr<StandardCard> card2(new StandardCard(CardSuite::CLUB, CardValue::TWO));
 
     ASSERT_NE(*card1, *card2);
 }
@@ -61,8 +65,8 @@ TEST(TestStandardCard, TestSameCardsNotEqual1)
  */
 TEST(TestStandardCard, TestSameCardsNotEqual2)
 {
-    std::shared_ptr<StandardCard> card1(new StandardCard(CardSuite::CLUB, CardValue::ACE));
-    std::shared_ptr<StandardCard> card2(new StandardCard(CardSuite::SPADE, CardValue::ACE));
+    shared_ptr<StandardCard> card1(new StandardCard(CardSuite::CLUB, CardValue::ACE));
+    shared_ptr<StandardCard> card2(new StandardCard(CardSuite::SPADE, CardValue::ACE));
 
     ASSERT_NE(*card1, *card2);
 }
@@ -74,8 +78,8 @@ TEST(TestStandardCard, TestSameCardsNotEqual2)
  */
 TEST(TestStandardCard, TestSameCardsNotEqual3)
 {
-    std::shared_ptr<StandardCard> card1(new StandardCard(CardSuite::CLUB, CardValue::ACE));
-    std::shared_ptr<StandardCard> card2(new StandardCard(CardSuite::SPADE, CardValue::THREE));
+    shared_ptr<StandardCard> card1(new StandardCard(CardSuite::CLUB, CardValue::ACE));
+    shared_ptr<StandardCard> card2(new StandardCard(CardSuite::SPADE, CardValue::THREE));
 
     ASSERT_NE(*card1, *card2);
 }

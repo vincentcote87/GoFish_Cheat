@@ -4,11 +4,11 @@
 #include "../include/GoFishController.h"
 
 TestGoFishController::TestGoFishController(): ::testing::Test(),
-    _mockStandardDeckFactory(std::shared_ptr<MockStandardDeckFactory>(new MockStandardDeckFactory())),
-    _mockStandardPlayerFactory(std::shared_ptr<MockStandardPlayerFactory>(new MockStandardPlayerFactory())),
-    _mockGoFishView(std::shared_ptr<MockGoFishView>(new MockGoFishView()))
+    _mockStandardDeckFactory(shared_ptr<MockStandardDeckFactory>(new MockStandardDeckFactory())),
+    _mockStandardPlayerFactory(shared_ptr<MockStandardPlayerFactory>(new MockStandardPlayerFactory())),
+    _mockGoFishView(shared_ptr<MockGoFishView>(new MockGoFishView()))
 {
-    this->_mockController = std::shared_ptr<MockController>(new MockController());
+    this->_mockController = shared_ptr<MockController>(new MockController());
 
     //this->_mockController->setStandardDeckFactory(this->_mockStandardDeckFactory);
     //this->_mockController->setStandardPlayerFactory(this->_mockStandardPlayerFactory);
@@ -52,7 +52,7 @@ TEST_F(TestGoFishController, TestPlay)
     ::testing::Expectation expect4 = EXPECT_CALL(*(this->_mockGoFishView), askForPlayerName()).
         Times(::testing::AnyNumber()).
         After(expect3).
-        WillOnce(::testing::Return(std::string("Player1")));
+        WillOnce(::testing::Return(string("Player1")));
 
     this->_mockController->play();
 

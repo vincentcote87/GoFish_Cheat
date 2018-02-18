@@ -4,12 +4,15 @@
 #include <gmock/gmock.h>
 #include "../include/StandardPlayerFactory.h"
 
+using std::string;
+using std::shared_ptr;
+
 class MockStandardPlayerFactory : public StandardPlayerFactory
 {
 public:
     virtual ~MockStandardPlayerFactory() {}
 
-    MOCK_METHOD1(createPlayer, std::shared_ptr<StandardPlayer>(std::string));
+    MOCK_METHOD1(createPlayer, shared_ptr<StandardPlayer>(string));
 };
 
 #endif // MOCKSTANDARDPLAYERFACTORY_H_INCLUDED

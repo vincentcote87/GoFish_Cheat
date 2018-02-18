@@ -4,11 +4,11 @@
 #include "../include/StandardPlayer.h"
 
 GoFishController::GoFishController():
-    _view(std::shared_ptr<GoFishView>()),
-    _standardPlayerFactory(std::shared_ptr<StandardPlayerFactory>()),
-    _standardDeckFactory(std::shared_ptr<StandardDeckFactory>()),
-    _players(std::list<std::shared_ptr<StandardPlayer>>()),
-    _deck(std::shared_ptr<StandardDeck>())
+    _view(shared_ptr<GoFishView>()),
+    _standardPlayerFactory(shared_ptr<StandardPlayerFactory>()),
+    _standardDeckFactory(shared_ptr<StandardDeckFactory>()),
+    _players(list<shared_ptr<StandardPlayer>>()),
+    _deck(shared_ptr<StandardDeck>())
 {
 
 }
@@ -18,18 +18,18 @@ GoFishController::~GoFishController()
 
 }
 
-void GoFishController::setView(std::shared_ptr<GoFishView> view)
+void GoFishController::setView(shared_ptr<GoFishView> view)
 {
     this->_view = view;
 }
 
-void GoFishController::setStandardPlayerFactory(std::shared_ptr<StandardPlayerFactory>
+void GoFishController::setStandardPlayerFactory(shared_ptr<StandardPlayerFactory>
         standardPlayerFactory)
 {
     this->_standardPlayerFactory = standardPlayerFactory;
 }
 
-void GoFishController::setStandardDeckFactory(std::shared_ptr<StandardDeckFactory>
+void GoFishController::setStandardDeckFactory(shared_ptr<StandardDeckFactory>
         standardDeckFactory)
 {
     this->_standardDeckFactory = standardDeckFactory;
@@ -39,7 +39,7 @@ void GoFishController::play()
 {
     init();
 
-    std::list<std::shared_ptr<StandardPlayer>>::iterator playerIter = this->_players.begin();
+    list<shared_ptr<StandardPlayer>>::iterator playerIter = this->_players.begin();
 
     while (!hasGameEnded())
     {
@@ -48,7 +48,7 @@ void GoFishController::play()
             playerIter = this->_players.begin();
         }
 
-        std::shared_ptr<StandardPlayer> player = *playerIter;
+        shared_ptr<StandardPlayer> player = *playerIter;
 
         playerTurn(player);
 
@@ -62,7 +62,7 @@ void GoFishController::play()
 
 void GoFishController::init()
 {
-    std::list<std::string> names = requestNames();
+    list<string> names = requestNames();
 
     this->_players = constructPlayers(names);
 
@@ -95,18 +95,18 @@ void GoFishController::deal()
     }
 }
 
-std::list<std::string> GoFishController::requestNames() const
+list<string> GoFishController::requestNames() const
 {
-    std::list<std::string> names = std::list<std::string>();
+    list<string> names = list<string>();
 
-    std::string name;
+    string name;
 
     do
     {
         name = this->_view->askForPlayerName();
         if (name.size() > 0)
         {
-            bool alreadyContainsName = std::find(names.begin(), names.end(), name) != names.end();
+            bool alreadyContainsName = find(names.begin(), names.end(), name) != names.end();
 
             if (!alreadyContainsName)
             {
@@ -122,14 +122,14 @@ std::list<std::string> GoFishController::requestNames() const
     return names;
 }
 
-std::list<std::shared_ptr<StandardPlayer>> GoFishController::constructPlayers(
-    std::list<std::string> names) const
+list<shared_ptr<StandardPlayer>> GoFishController::constructPlayers(
+    list<string> names) const
 {
-    std::list<std::shared_ptr<StandardPlayer>> players;
+    list<shared_ptr<StandardPlayer>> players;
 
-    for (std::list<std::string>::const_iterator it = names.cbegin(); it != names.cend(); ++it)
+    for (list<string>::const_iterator it = names.cbegin(); it != names.cend(); ++it)
     {
-        std::shared_ptr<StandardPlayer> player = this->_standardPlayerFactory->createPlayer(*it);
+        shared_ptr<StandardPlayer> player = this->_standardPlayerFactory->createPlayer(*it);
 
         players.push_back(player);
     }
@@ -141,10 +141,10 @@ bool GoFishController::hasGameEnded() const
 {
     unsigned int remaining_players = 0;
 
-    for (std::list<std::shared_ptr<StandardPlayer>>::const_iterator it = this->_players.cbegin();
+    for (list<shared_ptr<StandardPlayer>>::const_iterator it = this->_players.cbegin();
         it != this->_players.cend(); ++it)
     {
-        std::shared_ptr<StandardPlayer> player = *it;
+        shared_ptr<StandardPlayer> player = *it;
 
         if (!player->getHand()->isEmpty())
         {
@@ -155,12 +155,12 @@ bool GoFishController::hasGameEnded() const
     return remaining_players < 2;
 }
 
-std::shared_ptr<StandardPlayer> GoFishController::getWinner()
+shared_ptr<StandardPlayer> GoFishController::getWinner()
 {
-    for (std::list<std::shared_ptr<StandardPlayer>>::const_iterator it = this->_players.cbegin();
+    for (list<shared_ptr<StandardPlayer>>::const_iterator it = this->_players.cbegin();
         it != this->_players.cend(); ++it)
     {
-        std::shared_ptr<StandardPlayer> player = *it;
+        shared_ptr<StandardPlayer> player = *it;
 
         if (!player->getHand()->isEmpty())
         {
@@ -171,7 +171,7 @@ std::shared_ptr<StandardPlayer> GoFishController::getWinner()
     return *(this->_players.begin());
 }
 
-void GoFishController::playerTurn(std::shared_ptr<StandardPlayer> player)
+void GoFishController::playerTurn(shared_ptr<StandardPlayer> player)
 {
     if (player->getHand()->isEmpty())
     {
@@ -184,7 +184,7 @@ void GoFishController::playerTurn(std::shared_ptr<StandardPlayer> player)
     this->_view->showHand(player->getHand());
 
 
-    std::string requestedName;
+    string requestedName;
 
     unsigned int askedTimes = 0;
 
@@ -206,9 +206,9 @@ void GoFishController::playerTurn(std::shared_ptr<StandardPlayer> player)
     }
     while (!isValidPlayer(player->getName(), requestedName));
 
-    std::shared_ptr<StandardPlayer> askedPlayer = getPlayer(requestedName);
+    shared_ptr<StandardPlayer> askedPlayer = getPlayer(requestedName);
 
-    std::string suite;
+    string suite;
 
     askedTimes = 0;
 
@@ -224,7 +224,7 @@ void GoFishController::playerTurn(std::shared_ptr<StandardPlayer> player)
     while (!isValidSuite(suite));
 
 
-    std::string value;
+    string value;
 
     askedTimes = 0;
 
@@ -239,7 +239,7 @@ void GoFishController::playerTurn(std::shared_ptr<StandardPlayer> player)
     }
     while (!isValidValue(value));
 
-    std::shared_ptr<StandardCard> card = getCard(suite, value);
+    shared_ptr<StandardCard> card = getCard(suite, value);
 
     if (askedPlayer->getHand()->contains(card))
     {
@@ -268,7 +268,7 @@ void GoFishController::playerTurn(std::shared_ptr<StandardPlayer> player)
     this->_view->endTurn();
 }
 
-bool GoFishController::isValidPlayer(std::string currentPlayerName, std::string& name)
+bool GoFishController::isValidPlayer(string currentPlayerName, string& name)
 {
     if (currentPlayerName == name)
     {
@@ -288,7 +288,7 @@ bool GoFishController::isValidPlayer(std::string currentPlayerName, std::string&
     return false;
 }
 
-std::shared_ptr<StandardPlayer> GoFishController::getPlayer(std::string& name)
+shared_ptr<StandardPlayer> GoFishController::getPlayer(string& name)
 {
     for (auto it = this->_players.cbegin(); it != this->_players.cend(); ++it)
     {
@@ -300,22 +300,22 @@ std::shared_ptr<StandardPlayer> GoFishController::getPlayer(std::string& name)
         }
     }
 
-    return std::shared_ptr<StandardPlayer>(nullptr);
+    return shared_ptr<StandardPlayer>(nullptr);
 }
 
-std::shared_ptr<StandardCard> GoFishController::getCard(std::string& suite, std::string& value)
+shared_ptr<StandardCard> GoFishController::getCard(string& suite, string& value)
 {
     CardValue cvalue;
     CardSuite csuite;
 
-    for (std::string::size_type i = 0; i < suite.length(); ++i)
+    for (string::size_type i = 0; i < suite.length(); ++i)
     {
-        suite[i] = std::tolower(suite[i]);
+        suite[i] = tolower(suite[i]);
     }
 
-    for (std::string::size_type i = 0; i < value.length(); ++i)
+    for (string::size_type i = 0; i < value.length(); ++i)
     {
-        value[i] = std::tolower(value[i]);
+        value[i] = tolower(value[i]);
     }
 
     if (value == "ace")
@@ -396,25 +396,25 @@ std::shared_ptr<StandardCard> GoFishController::getCard(std::string& suite, std:
         csuite = CardSuite::HEART;
     }
 
-    return std::shared_ptr<StandardCard>(new StandardCard(csuite, cvalue));
+    return shared_ptr<StandardCard>(new StandardCard(csuite, cvalue));
 }
 
-bool GoFishController::isValidSuite(std::string& suite)
+bool GoFishController::isValidSuite(string& suite)
 {
-    for (std::string::size_type i = 0; i < suite.length(); ++i)
+    for (string::size_type i = 0; i < suite.length(); ++i)
     {
-        suite[i] = std::tolower(suite[i]);
+        suite[i] = tolower(suite[i]);
     }
 
     return suite == "heart" || suite == "hearts" || suite == "spade" || suite == "spades" ||
         suite == "diamond" || suite == "diamonds" || suite == "club" || suite == "clubs";
 }
 
-bool GoFishController::isValidValue(std::string& value)
+bool GoFishController::isValidValue(string& value)
 {
-    for (std::string::size_type i = 0; i < value.length(); ++i)
+    for (string::size_type i = 0; i < value.length(); ++i)
     {
-        value[i] = std::tolower(value[i]);
+        value[i] = tolower(value[i]);
     }
 
     return value == "ace" || value == "two" || value == "three" || value == "four" ||

@@ -4,6 +4,8 @@
 #include <memory>
 #include "Card.h"
 
+using std::shared_ptr;
+
 /**
  * A template interface representing a hand of cards (of class TCard).
  */
@@ -34,7 +36,7 @@ public:
      *
      * @param card The card to add.
      */
-    virtual std::shared_ptr<TCard> add(std::shared_ptr<TCard> card) = 0;
+    virtual shared_ptr<TCard> add(shared_ptr<TCard> card) = 0;
 
     /**
      * Removes a card at index <code>index</code>.
@@ -46,7 +48,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw OutOfBoundsException If the <code>index</code> is out of range.
      */
-    virtual std::shared_ptr<TCard> remove(unsigned int index) = 0;
+    virtual shared_ptr<TCard> remove(unsigned int index) = 0;
 
     /**
      * Removes <code>card</code> from the hand.
@@ -58,7 +60,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw ElementNotFoundException If the card is not in the hand.
      */
-    virtual std::shared_ptr<TCard> remove(std::shared_ptr<TCard> card) = 0;
+    virtual shared_ptr<TCard> remove(shared_ptr<TCard> card) = 0;
 
     /**
      * Gets a card at index <code>index</code>.
@@ -70,7 +72,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw OutOfBoundsException If the <code>index</code> is out of range.
      */
-    virtual std::shared_ptr<TCard> get(unsigned int index) const = 0;
+    virtual shared_ptr<TCard> get(unsigned int index) const = 0;
 
     /**
      * Gets <code>card</code> from the hand.
@@ -83,7 +85,7 @@ public:
      * @throw ElementNotFoundException If <code>card</code> is not in the hand.
      *
      */
-    virtual std::shared_ptr<TCard> get(std::shared_ptr<TCard> card) const = 0;
+    virtual shared_ptr<TCard> get(shared_ptr<TCard> card) const = 0;
 
     /**
      * Determines if the hand contains <code>card</code>.
@@ -92,7 +94,7 @@ public:
      *
      * @return bool True if the hand contains the card, false if not.
      */
-    virtual bool contains(std::shared_ptr<TCard> card) const = 0;
+    virtual bool contains(shared_ptr<TCard> card) const = 0;
 };
 
 #endif // HAND_H_INCLUDED

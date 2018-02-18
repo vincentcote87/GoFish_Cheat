@@ -3,6 +3,8 @@
 
 #include "../include/StandardHand.h"
 
+using std::shared_ptr;
+
 class TestStandardHand : public ::testing::Test
 {
 protected:
@@ -31,11 +33,11 @@ protected:
     /**
      * A new, empty hand of standard cards which is used for test cases.
      */
-    std::shared_ptr<StandardHand> _hand;
+    shared_ptr<StandardHand> _hand;
 
-    std::shared_ptr<StandardCard> _ace_hearts;
+    shared_ptr<StandardCard> _ace_hearts;
 
-    std::shared_ptr<StandardCard> _ace_spades;
+    shared_ptr<StandardCard> _ace_spades;
 };
 
 #endif // TESTSTANDARDHAND_H_INCLUDED

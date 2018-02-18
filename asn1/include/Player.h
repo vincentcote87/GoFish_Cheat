@@ -6,6 +6,9 @@
 #include "Card.h"
 #include "Hand.h"
 
+using std::string;
+using std::shared_ptr;
+
 /**
  * A template class representing a card game player.
  */
@@ -22,14 +25,14 @@ public:
      *
      * @return The hand.
      */
-    virtual std::shared_ptr<THand> getHand() = 0;
+    virtual shared_ptr<THand> getHand() = 0;
 
     /**
      * Gets the name of the player.
      *
      * @return A string of the name of the player.
      */
-    virtual std::string getName() const = 0;
+    virtual string getName() const = 0;
 };
 
 #endif // PLAYER_H_INCLUDED

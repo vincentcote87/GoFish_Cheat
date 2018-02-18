@@ -4,6 +4,8 @@
 #include <memory>
 #include "Card.h"
 
+using std::shared_ptr;
+
 /**
  * A template interface representing a deck of cards (of class TCard).
  */
@@ -41,7 +43,7 @@ public:
      *
      * @param card The card to put on the top of the deck.
      */
-    virtual void pushTop(std::shared_ptr<TCard> card) = 0;
+    virtual void pushTop(shared_ptr<TCard> card) = 0;
 
     /**
      * Draws a card from the top of a deck.
@@ -50,7 +52,7 @@ public:
      *
      * @throw EmptyDeckException If there are no cards available to be drawn.
      */
-    virtual std::shared_ptr<TCard> popTop() = 0;
+    virtual shared_ptr<TCard> popTop() = 0;
 
     /**
      * Peeks at the card from the top of a deck.
@@ -59,7 +61,7 @@ public:
      *
      * @throw EmptyDeckException If there are no cards in the deck.
      */
-    virtual std::shared_ptr<TCard> peekTop() const = 0;
+    virtual shared_ptr<TCard> peekTop() const = 0;
 
     /**
      * Peeks at a desired card from the deck, based on the card's index.
@@ -73,7 +75,7 @@ public:
      * @throw OutOfBoundsException If the deck is not empty, but the index is not in
      *        the range of the valid card indices.
      */
-    virtual std::shared_ptr<TCard> peek(unsigned int index) const = 0;
+    virtual shared_ptr<TCard> peek(unsigned int index) const = 0;
 };
 
 #endif // DECK_H_INCLUDED

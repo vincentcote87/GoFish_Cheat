@@ -5,6 +5,9 @@
 #include <memory>
 #include "StandardHand.h"
 
+using std::string;
+using std::shared_ptr;
+
 class GoFishView
 {
 public:
@@ -12,27 +15,27 @@ public:
 
     virtual ~GoFishView();
 
-    std::string askForPlayerName();
+    string askForPlayerName();
 
     void nameAlreadyExists();
 
-    void playerTurn(const std::string& name);
+    void playerTurn(const string& name);
 
-    void showHand(std::shared_ptr<StandardHand> hand);
+    void showHand(shared_ptr<StandardHand> hand);
 
-    std::string askPlayerNameToTakeFrom();
+    string askPlayerNameToTakeFrom();
 
     void invalidPlayerName();
 
     void enteredOwnName();
 
-    std::string askForSuite();
+    string askForSuite();
 
-    std::string askForValue();
+    string askForValue();
 
-    void invalidSuite(std::string& suite);
+    void invalidSuite(string& suite);
 
-    void invalidValue(std::string& value);
+    void invalidValue(string& value);
 
     void playerHasA(bool has);
 
@@ -42,9 +45,9 @@ public:
 
     void endTurn();
 
-    void gameWon(std::string name);
+    void gameWon(string name);
 private:
-    void printCard(std::shared_ptr<StandardCard> card);
+    void printCard(shared_ptr<StandardCard> card);
 };
 
 #endif // GOFISHVIEW_H_INCLUDED

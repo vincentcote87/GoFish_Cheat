@@ -4,6 +4,8 @@
 #include <memory>
 #include "StandardDeck.h"
 
+using std::shared_ptr;
+
 class StandardDeckFactory
 {
 public:
@@ -11,7 +13,7 @@ public:
 
     virtual ~StandardDeckFactory() {}
 
-    virtual std::shared_ptr<StandardDeck> createStandardDeck();
+    virtual shared_ptr<StandardDeck> createStandardDeck();
 };
 
 #endif // STANDARDDECKFACTORY_H_INCLUDED

@@ -6,8 +6,8 @@
 #include "../include/OutOfBoundsException.h"
 #include "../include/ElementNotFoundException.h"
 
-TestStandardHand::TestStandardHand(): ::testing::Test(),_hand(std::shared_ptr<StandardHand>()),_ace_hearts(
-    std::shared_ptr<StandardCard>()),_ace_spades(std::shared_ptr<StandardCard>())
+TestStandardHand::TestStandardHand(): ::testing::Test(),_hand(shared_ptr<StandardHand>()),_ace_hearts(
+    shared_ptr<StandardCard>()),_ace_spades(shared_ptr<StandardCard>())
 {
     SetUp();
 }
@@ -19,11 +19,11 @@ TestStandardHand::~TestStandardHand()
 
 void TestStandardHand::SetUp()
 {
-    this->_hand = std::shared_ptr<StandardHand>(new StandardHand());
+    this->_hand = shared_ptr<StandardHand>(new StandardHand());
 
-    this->_ace_hearts = std::shared_ptr<StandardCard>(new StandardCard(
+    this->_ace_hearts = shared_ptr<StandardCard>(new StandardCard(
         CardSuite::HEART, CardValue::ACE));
-    this->_ace_spades = std::shared_ptr<StandardCard>(new StandardCard(
+    this->_ace_spades = shared_ptr<StandardCard>(new StandardCard(
         CardSuite::SPADE, CardValue::ACE));
 }
 
@@ -81,7 +81,7 @@ TEST_F(TestStandardHand, TestAddRemoveGetCount)
 
 TEST_F(TestStandardHand, TestAdd)
 {
-    std::shared_ptr<StandardCard> card = this->_hand->add(this->_ace_hearts);
+    shared_ptr<StandardCard> card = this->_hand->add(this->_ace_hearts);
 
     ASSERT_EQ(*card, *(this->_ace_hearts));
 }

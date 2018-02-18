@@ -5,7 +5,7 @@
 #include "../include/ElementNotFoundException.h"
 #include "../include/CardAlreadyInHandException.h"
 
-StandardHand::StandardHand():_cardList(std::vector<std::shared_ptr<StandardCard>>())
+StandardHand::StandardHand():_cardList(vector<shared_ptr<StandardCard>>())
 {
 
 }
@@ -25,7 +25,7 @@ unsigned int StandardHand::getCount() const
     return this->_cardList.size();
 }
 
-std::shared_ptr<StandardCard> StandardHand::add(std::shared_ptr<StandardCard> card)
+shared_ptr<StandardCard> StandardHand::add(shared_ptr<StandardCard> card)
 {
     if (isCardInHand(card))
     {
@@ -37,7 +37,7 @@ std::shared_ptr<StandardCard> StandardHand::add(std::shared_ptr<StandardCard> ca
     return card;
 }
 
-std::shared_ptr<StandardCard> StandardHand::remove(unsigned int index)
+shared_ptr<StandardCard> StandardHand::remove(unsigned int index)
 {
     if (isEmpty())
     {
@@ -51,24 +51,24 @@ std::shared_ptr<StandardCard> StandardHand::remove(unsigned int index)
         throw OutOfBoundsException(index, 0, count);
     }
 
-    std::shared_ptr<StandardCard> card = this->_cardList[index];
+    shared_ptr<StandardCard> card = this->_cardList[index];
 
     this->_cardList.erase(this->_cardList.begin() + index);
 
     return card;
 }
 
-std::shared_ptr<StandardCard> StandardHand::remove(std::shared_ptr<StandardCard> card)
+shared_ptr<StandardCard> StandardHand::remove(shared_ptr<StandardCard> card)
 {
     if (isEmpty())
     {
         throw EmptyHandException();
     }
 
-    for (std::vector<std::shared_ptr<StandardCard>>::iterator it = this->_cardList.begin();
+    for (vector<shared_ptr<StandardCard>>::iterator it = this->_cardList.begin();
         it != this->_cardList.end(); ++it)
     {
-        std::shared_ptr<StandardCard> handCard = *it;
+        shared_ptr<StandardCard> handCard = *it;
 
         if (*handCard == *card)
         {
@@ -81,7 +81,7 @@ std::shared_ptr<StandardCard> StandardHand::remove(std::shared_ptr<StandardCard>
     throw ElementNotFoundException();
 }
 
-std::shared_ptr<StandardCard> StandardHand::get(unsigned int index) const
+shared_ptr<StandardCard> StandardHand::get(unsigned int index) const
 {
     if (isEmpty())
     {
@@ -98,17 +98,17 @@ std::shared_ptr<StandardCard> StandardHand::get(unsigned int index) const
     return this->_cardList[index];
 }
 
-std::shared_ptr<StandardCard> StandardHand::get(std::shared_ptr<StandardCard> card) const
+shared_ptr<StandardCard> StandardHand::get(shared_ptr<StandardCard> card) const
 {
     if (isEmpty())
     {
         throw EmptyHandException();
     }
 
-    for (std::vector<std::shared_ptr<StandardCard>>::const_iterator it = this->_cardList.cbegin();
+    for (vector<shared_ptr<StandardCard>>::const_iterator it = this->_cardList.cbegin();
         it != this->_cardList.cend(); ++it)
     {
-        std::shared_ptr<StandardCard> handCard = *it;
+        shared_ptr<StandardCard> handCard = *it;
 
         if (*handCard == *card)
         {
@@ -119,12 +119,12 @@ std::shared_ptr<StandardCard> StandardHand::get(std::shared_ptr<StandardCard> ca
     throw ElementNotFoundException();
 }
 
-bool StandardHand::contains(std::shared_ptr<StandardCard> card) const
+bool StandardHand::contains(shared_ptr<StandardCard> card) const
 {
     return isCardInHand(card);
 }
 
-bool StandardHand::isCardInHand(std::shared_ptr<StandardCard> card) const
+bool StandardHand::isCardInHand(shared_ptr<StandardCard> card) const
 {
     if (isEmpty())
     {
@@ -133,7 +133,7 @@ bool StandardHand::isCardInHand(std::shared_ptr<StandardCard> card) const
 
     for (unsigned int i = 0; i < getCount(); i++)
     {
-        const std::shared_ptr<StandardCard> handCard = get(i);
+        const shared_ptr<StandardCard> handCard = get(i);
 
         if (*card == *handCard)
             return true;

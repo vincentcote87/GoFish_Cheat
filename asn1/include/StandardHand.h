@@ -5,6 +5,9 @@
 #include "Hand.h"
 #include "StandardCard.h"
 
+using std::vector;
+using std::shared_ptr;
+
 /**
  * A class representing a hand of standard cards.
  */
@@ -44,7 +47,7 @@ public:
      *
      * @throw CardAlreadyInHandException If <code>card</code> is already in the hand.
      */
-    virtual std::shared_ptr<StandardCard> add(std::shared_ptr<StandardCard> card);
+    virtual shared_ptr<StandardCard> add(shared_ptr<StandardCard> card);
 
     /**
      * Removes a card at index <code>index</code>.
@@ -56,7 +59,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw OutOfBoundsException If the <code>index</code> is out of range.
      */
-    virtual std::shared_ptr<StandardCard> remove(unsigned int index);
+    virtual shared_ptr<StandardCard> remove(unsigned int index);
 
     /**
      * Removes <code>card</code> from the hand.
@@ -68,7 +71,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw ElementNotFoundException If the card is not in the hand.
      */
-    virtual std::shared_ptr<StandardCard> remove(std::shared_ptr<StandardCard> card);
+    virtual shared_ptr<StandardCard> remove(shared_ptr<StandardCard> card);
 
     /**
      * Gets a card at index <code>index</code>.
@@ -80,7 +83,7 @@ public:
      * @throw EmptyHandException If the hand is empty.
      * @throw OutOfBoundsException If the <code>index</code> is out of range.
      */
-    virtual std::shared_ptr<StandardCard> get(unsigned int index) const;
+    virtual shared_ptr<StandardCard> get(unsigned int index) const;
 
     /**
      * Gets <code>card</code> from the hand.
@@ -93,7 +96,7 @@ public:
      * @throw ElementNotFoundException If <code>card</code> is not in the hand.
      *
      */
-    virtual std::shared_ptr<StandardCard> get(std::shared_ptr<StandardCard> card) const;
+    virtual shared_ptr<StandardCard> get(shared_ptr<StandardCard> card) const;
 
     /**
      * Determines if the hand contains <code>card</code>.
@@ -102,7 +105,7 @@ public:
      *
      * @return bool True if the hand contains the card, false if not.
      */
-    virtual bool contains(std::shared_ptr<StandardCard> card) const;
+    virtual bool contains(shared_ptr<StandardCard> card) const;
 protected:
     /**
      * Checks if a card is already in the hand.
@@ -111,12 +114,12 @@ protected:
      *
      * @return True if the card is already in the hand, false if not.
      */
-    virtual bool isCardInHand(std::shared_ptr<StandardCard> card) const;
+    virtual bool isCardInHand(shared_ptr<StandardCard> card) const;
 private:
     /**
      * A vector of the cards in the hand.
      */
-    std::vector<std::shared_ptr<StandardCard>> _cardList;
+    vector<shared_ptr<StandardCard>> _cardList;
 };
 
 #endif // STANDARDHAND_H_INCLUDED

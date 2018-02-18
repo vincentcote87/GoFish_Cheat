@@ -2,6 +2,10 @@
 #include <sstream>
 #include "../include/GoFishView.h"
 
+using std::cin;
+using std::cout;
+using std::endl;
+
 GoFishView::GoFishView()
 {
 
@@ -12,58 +16,58 @@ GoFishView::~GoFishView()
 
 }
 
-std::string GoFishView::askForPlayerName()
+string GoFishView::askForPlayerName()
 {
-    std::cout << "Please enter a player name (enter if you don't want to add another player): ";
+    cout << "Please enter a player name (enter if you don't want to add another player): ";
 
-    std::string name;
+    string name;
 
-    getline(std::cin, name);
+    getline(cin, name);
 
     return name;
 }
 
 void GoFishView::nameAlreadyExists()
 {
-    std::cout << "You've tried to enter a player name which has already been specified." << std::endl;
+    cout << "You've tried to enter a player name which has already been specified." << endl;
 }
 
-void GoFishView::playerTurn(const std::string& name)
+void GoFishView::playerTurn(const string& name)
 {
     system("clear");
 
-    std::cout << "It's name " << name << "'s turn. Press enter when ready." << std::endl;
+    cout << "It's name " << name << "'s turn. Press enter when ready." << endl;
 
-    std::string line;
+    string line;
 
-    getline(std::cin, line);
+    getline(cin, line);
 }
 
-void GoFishView::showHand(std::shared_ptr<StandardHand> hand)
+void GoFishView::showHand(shared_ptr<StandardHand> hand)
 {
-    std::cout << "Your hand: ";
+    cout << "Your hand: ";
 
     unsigned int count = hand->getCount();
 
     for (unsigned int i = 0; i < count; ++i)
     {
-        std::shared_ptr<StandardCard> card = hand->get(i);
+        shared_ptr<StandardCard> card = hand->get(i);
 
         printCard(card);
 
         if (i < count - 1)
         {
-            std::cout << ", ";
+            cout << ", ";
         }
     }
 
-    std::cout << std::endl;
+    cout << endl;
 }
 
-void GoFishView::printCard(std::shared_ptr<StandardCard> card)
+void GoFishView::printCard(shared_ptr<StandardCard> card)
 {
-    std::string suite;
-    std::string value;
+    string suite;
+    string value;
 
     switch (card->getSuite())
     {
@@ -149,98 +153,98 @@ void GoFishView::printCard(std::shared_ptr<StandardCard> card)
         break;
     }
 
-    std::cout << value << " of " << suite;
+    cout << value << " of " << suite;
 }
 
-std::string GoFishView::askPlayerNameToTakeFrom()
+string GoFishView::askPlayerNameToTakeFrom()
 {
-    std::cout << "Whom would you like to ask for a card? Please enter their name: ";
+    cout << "Whom would you like to ask for a card? Please enter their name: ";
 
-    std::string name;
+    string name;
 
-    getline(std::cin, name);
+    getline(cin, name);
 
     return name;
 }
 
 void GoFishView::invalidPlayerName()
 {
-    std::cout << "There's no player with that name." << std::endl;
+    cout << "There's no player with that name." << endl;
 }
 
-std::string GoFishView::askForSuite()
+string GoFishView::askForSuite()
 {
-    std::cout << "Enter the suite of the card you'd like to ask for: ";
+    cout << "Enter the suite of the card you'd like to ask for: ";
 
-    std::string str;
+    string str;
 
-    getline(std::cin, str);
+    getline(cin, str);
 
     return str;
 }
 
 void GoFishView::enteredOwnName()
 {
-    std::cout << "You tried entering your own name." << std::endl;
+    cout << "You tried entering your own name." << endl;
 }
 
-std::string GoFishView::askForValue()
+string GoFishView::askForValue()
 {
-    std::cout << "Enter the value of the card you'd like to ask for: ";
+    cout << "Enter the value of the card you'd like to ask for: ";
 
-    std::string str;
+    string str;
 
-    getline(std::cin, str);
+    getline(cin, str);
 
     return str;
 }
 
-void GoFishView::invalidSuite(std::string& suite)
+void GoFishView::invalidSuite(string& suite)
 {
-    std::cout << "Invalid card suite: " << suite << "." << std::endl;
+    cout << "Invalid card suite: " << suite << "." << endl;
 }
 
-void GoFishView::invalidValue(std::string& value)
+void GoFishView::invalidValue(string& value)
 {
-    std::cout << "Invalid card value: " << value << "." << std::endl;
+    cout << "Invalid card value: " << value << "." << endl;
 }
 
 void GoFishView::playerHasA(bool has)
 {
     if (has)
     {
-        std::cout << "The player has that card! You took it for yourself!" << std::endl;
+        cout << "The player has that card! You took it for yourself!" << endl;
     }
     else
     {
-        std::cout << "\"Go fish!\"" << std::endl;
+        cout << "\"Go fish!\"" << endl;
     }
 }
 
 void GoFishView::drawCard()
 {
-    std::cout << "You draw a card from the deck." << std::endl;
+    cout << "You draw a card from the deck." << endl;
 }
 
 void GoFishView::emptyDeck()
 {
-    std::cout << "The deck is empty! You are enable to draw a card from the deck." << std::endl;
+    cout << "The deck is empty! You are enable to draw a card from the deck." << endl;
 }
 
 void GoFishView::endTurn()
 {
-    std::cout << "Please press enter to end your turn." << std::endl;
+    cout << "Please press enter to end your turn." << endl;
 
-    std::string line;
+    string line;
 
-    getline(std::cin, line);
+    getline(cin, line);
 }
 
-void GoFishView::gameWon(std::string name)
+void GoFishView::gameWon(string name)
 {
-    std::cout << name << " has won the game!";
+    cout << name << " has won the game!";
 
-    std::string line;
+    string line;
 
-    getline(std::cin, line);
+    getline(cin, line);
 }

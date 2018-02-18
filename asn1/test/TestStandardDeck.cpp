@@ -7,7 +7,9 @@
 #include "../include/EmptyDeckException.h"
 #include "../include/OutOfBoundsException.h"
 
-TestStandardDeck::TestStandardDeck(): ::testing::Test(),_deck(std::shared_ptr<StandardDeck>())
+using std::vector;
+
+TestStandardDeck::TestStandardDeck(): ::testing::Test(),_deck(shared_ptr<StandardDeck>())
 {
     SetUp();
 }
@@ -19,7 +21,7 @@ TestStandardDeck::~TestStandardDeck()
 
 void TestStandardDeck::SetUp()
 {
-    this->_deck = std::shared_ptr<StandardDeck>(new StandardDeck());
+    this->_deck = shared_ptr<StandardDeck>(new StandardDeck());
 }
 
 void TestStandardDeck::TearDown()
@@ -49,7 +51,7 @@ TEST_F(TestStandardDeck, TestFullDeckSize)
  */
 TEST_F(TestStandardDeck, TestPushToFullDeck)
 {
-    std::shared_ptr<StandardCard> card = std::shared_ptr<StandardCard>
+    shared_ptr<StandardCard> card = shared_ptr<StandardCard>
         (new StandardCard(CardSuite::CLUB, CardValue::EIGHT));
 
     ASSERT_THROW(_deck->pushTop(card), CardAlreadyInDeckException);
@@ -73,13 +75,13 @@ TEST_F(TestStandardDeck, TestPopValid)
 TEST_F(TestStandardDeck, TestPopPushEqual)
 {
     // Draw a card from the top of the deck
-    std::shared_ptr<StandardCard> card = _deck->popTop();
+    shared_ptr<StandardCard> card = _deck->popTop();
 
     // Put it back on the top
     ASSERT_NO_THROW(_deck->pushTop(card));
 
     // Draw it again
-    std::shared_ptr<StandardCard> card2 = _deck->popTop();
+    shared_ptr<StandardCard> card2 = _deck->popTop();
 
     // card and card2 should be equal
 
@@ -205,7 +207,7 @@ TEST_F(TestStandardDeck, TestGetCountAfterPop)
  */
 TEST_F(TestStandardDeck, TestShuffle)
 {
-    std::vector<std::shared_ptr<StandardCard>> first_ordered;
+    vector<shared_ptr<StandardCard>> first_ordered;
 
     unsigned int count = _deck->getCount();
 

@@ -5,6 +5,8 @@
 #include <memory>
 #include "../include/StandardDeck.h"
 
+using std::shared_ptr;
+
 /**
  * A test fixture for decks, where a new, full standard deck of 52 standard
  * cards is constructed for each individual test case.
@@ -37,7 +39,7 @@ protected:
     /**
      * A new, full deck of 52 standard cards which is used for test cases.
      */
-    std::shared_ptr<StandardDeck> _deck;
+    shared_ptr<StandardDeck> _deck;
 };
 
 #endif // TESTSTANDARDDECK_H_INCLUDED
