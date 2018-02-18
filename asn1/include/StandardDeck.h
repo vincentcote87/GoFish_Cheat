@@ -10,7 +10,7 @@ using std::shared_ptr;
 
 /**
  * A class representing a deck of cards using StandardCard. The deck cannot
- * contain multiple cards of the same type (as in same suite and value). This
+ * contain multiple cards of the same type (as in same suit and value). This
  * implicitly means the deck will never contain more than 52 cards while using
  * standard cards.
  */
@@ -18,7 +18,7 @@ class StandardDeck : public Deck<StandardCard>
 {
 public:
     /**
-     * Constructs a new standard deck, containing 52 cards of the suites
+     * Constructs a new standard deck, containing 52 cards of the suits
      * spades, clubs, diamonds, and hearts. The card values contain all
      * standard card values (aces to kings).
      * </br></br>

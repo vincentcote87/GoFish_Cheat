@@ -7,7 +7,7 @@
 
 using std::vector;
 
-const vector<CardSuite> all_suites { CardSuite::CLUB, CardSuite::DIAMOND, CardSuite::HEART, CardSuite::SPADE };
+const vector<CardSuit> all_suits { CardSuit::CLUB, CardSuit::DIAMOND, CardSuit::HEART, CardSuit::SPADE };
 
 const vector<CardValue> all_card_values { CardValue::ACE, CardValue::TWO, CardValue::THREE,
           CardValue::FOUR, CardValue::FIVE, CardValue::SIX, CardValue::SEVEN, CardValue::EIGHT,
@@ -15,11 +15,11 @@ const vector<CardValue> all_card_values { CardValue::ACE, CardValue::TWO, CardVa
 
 StandardDeck::StandardDeck():_cardList(deque<shared_ptr<StandardCard>>())
 {
-    for (CardSuite suite : all_suites)
+    for (CardSuit suit : all_suits)
     {
         for (CardValue value : all_card_values)
         {
-            pushTop(shared_ptr<StandardCard>(new StandardCard(suite, value)));
+            pushTop(shared_ptr<StandardCard>(new StandardCard(suit, value)));
         }
     }
 }

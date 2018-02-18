@@ -29,11 +29,11 @@ public:
 
     void enteredOwnName();
 
-    string askForSuite();
+    string askForSuit();
 
     string askForValue();
 
-    void invalidSuite(string& suite);
+    void invalidSuit(string& suit);
 
     void invalidValue(string& value);
 

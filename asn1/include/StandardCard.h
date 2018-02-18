@@ -2,23 +2,23 @@
 #define STANDARDCARD_H_INCLUDED
 
 #include "Card.h"
-#include "CardSuite.h"
+#include "CardSuit.h"
 #include "CardValue.h"
 
 /**
- * An immutable class representing a standard card which uses CardSuite as the card
- * suite, and CardValue as the card value.
+ * An immutable class representing a standard card which uses CardSuit as the card
+ * suit, and CardValue as the card value.
  */
-class StandardCard : public Card<CardSuite, CardValue>
+class StandardCard : public Card<CardSuit, CardValue>
 {
 public:
     /**
      * Constructs a new StandardCard.
      *
-     * @param suite The card suite.
+     * @param suit The card suit.
      * @param value The card value.
      */
-    StandardCard(const CardSuite suite, const CardValue value);
+    StandardCard(const CardSuit suit, const CardValue value);
 
     /**
      * Virtual destructor.
@@ -26,11 +26,11 @@ public:
     virtual ~StandardCard();
 
     /**
-     * Gets the suite of this card.
+     * Gets the suit of this card.
      *
-     * @return The suite of this card.
+     * @return The suit of this card.
      */
-    virtual CardSuite getSuite() const;
+    virtual CardSuit getSuit() const;
 
     /**
      * Gets the value of this card.
@@ -40,8 +40,8 @@ public:
     virtual CardValue getValue() const;
 
     /**
-     * Checks for equality of two standard cards. Compares the equality of the suites
-     * returned by CardSuite#getSuite and the values returned by CardValue#getValue.
+     * Checks for equality of two standard cards. Compares the equality of the suits
+     * returned by CardSuit#getSuit and the values returned by CardValue#getValue.
      *
      * @param card The card to compare against this card.
      *
@@ -51,7 +51,7 @@ public:
 
     /**
      * Checks for non-equality of two standard cards. Compares the non-equality of the
-     * suites returned by CardSuite#getSuite and the values returned by CardValue#getValue.
+     * suits returned by CardSuit#getSuit and the values returned by CardValue#getValue.
      *
      * @param card The card to compare against this card.
      *
@@ -60,9 +60,9 @@ public:
     bool operator!=(const StandardCard&) const;
 private:
     /**
-     * The card suite.
+     * The card suit.
      */
-    const CardSuite _suite;
+    const CardSuit _suit;
 
     /**
      * The card value.

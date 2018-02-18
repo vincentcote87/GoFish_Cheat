@@ -66,29 +66,29 @@ void GoFishView::showHand(shared_ptr<StandardHand> hand)
 
 void GoFishView::printCard(shared_ptr<StandardCard> card)
 {
-    string suite;
+    string suit;
     string value;
 
-    switch (card->getSuite())
+    switch (card->getSuit())
     {
-    case CardSuite::CLUB:
-        suite = "Clubs";
+    case CardSuit::CLUB:
+        suit = "Clubs";
 
         break;
-    case CardSuite::DIAMOND:
-        suite = "Diamonds";
+    case CardSuit::DIAMOND:
+        suit = "Diamonds";
 
         break;
-    case CardSuite::HEART:
-        suite = "Hearts";
+    case CardSuit::HEART:
+        suit = "Hearts";
 
         break;
-    case CardSuite::SPADE:
-        suite = "Spades";
+    case CardSuit::SPADE:
+        suit = "Spades";
 
         break;
     default:
-        suite = "Unknown Suite";
+        suit = "Unknown Suit";
 
         break;
     }
@@ -153,7 +153,7 @@ void GoFishView::printCard(shared_ptr<StandardCard> card)
         break;
     }
 
-    cout << value << " of " << suite;
+    cout << value << " of " << suit;
 }
 
 string GoFishView::askPlayerNameToTakeFrom()
@@ -172,9 +172,9 @@ void GoFishView::invalidPlayerName()
     cout << "There's no player with that name." << endl;
 }
 
-string GoFishView::askForSuite()
+string GoFishView::askForSuit()
 {
-    cout << "Enter the suite of the card you'd like to ask for: ";
+    cout << "Enter the suit of the card you'd like to ask for: ";
 
     string str;
 
@@ -199,9 +199,9 @@ string GoFishView::askForValue()
     return str;
 }
 
-void GoFishView::invalidSuite(string& suite)
+void GoFishView::invalidSuit(string& suit)
 {
-    cout << "Invalid card suite: " << suite << "." << endl;
+    cout << "Invalid card suit: " << suit << "." << endl;
 }
 
 void GoFishView::invalidValue(string& value)

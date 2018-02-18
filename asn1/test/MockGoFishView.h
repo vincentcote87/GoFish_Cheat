@@ -19,9 +19,9 @@ public:
     MOCK_METHOD0(askPlayerNameToTakeFrom, string());
     MOCK_METHOD0(invalidPlayerName, void());
     MOCK_METHOD0(enteredOwnName, void());
-    MOCK_METHOD0(askForSuite, string());
+    MOCK_METHOD0(askForSuit, string());
     MOCK_METHOD0(askForValue, string());
-    MOCK_METHOD1(invalidSuite, void(string& suite));
+    MOCK_METHOD1(invalidSuit, void(string& suit));
     MOCK_METHOD1(invalidValue, void(string& value));
     MOCK_METHOD1(playerHasA, void(bool has));
     MOCK_METHOD0(drawCard, void());

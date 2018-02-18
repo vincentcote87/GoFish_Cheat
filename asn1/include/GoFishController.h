@@ -49,11 +49,11 @@ public:
 
     virtual bool isValidPlayer(string currentPlayerName, string& name);
 
-    shared_ptr<StandardCard> getCard(string& suite, string& value);
+    shared_ptr<StandardCard> getCard(string& suit, string& value);
 
     virtual shared_ptr<StandardPlayer> getPlayer(string& name);
 
-    virtual bool isValidSuite(string& suite);
+    virtual bool isValidSuit(string& suit);
 
     virtual bool isValidValue(string& value);
 private:

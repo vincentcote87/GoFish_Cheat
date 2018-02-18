@@ -208,7 +208,7 @@ void GoFishController::playerTurn(shared_ptr<StandardPlayer> player)
 
     shared_ptr<StandardPlayer> askedPlayer = getPlayer(requestedName);
 
-    string suite;
+    string suit;
 
     askedTimes = 0;
 
@@ -216,12 +216,12 @@ void GoFishController::playerTurn(shared_ptr<StandardPlayer> player)
     {
         if (++askedTimes > 1)
         {
-            this->_view->invalidSuite(suite);
+            this->_view->invalidSuit(suit);
         }
 
-        suite = this->_view->askForSuite();
+        suit = this->_view->askForSuit();
     }
-    while (!isValidSuite(suite));
+    while (!isValidSuit(suit));
 
 
     string value;
@@ -239,7 +239,7 @@ void GoFishController::playerTurn(shared_ptr<StandardPlayer> player)
     }
     while (!isValidValue(value));
 
-    shared_ptr<StandardCard> card = getCard(suite, value);
+    shared_ptr<StandardCard> card = getCard(suit, value);
 
     if (askedPlayer->getHand()->contains(card))
     {
@@ -303,14 +303,14 @@ shared_ptr<StandardPlayer> GoFishController::getPlayer(string& name)
     return shared_ptr<StandardPlayer>(nullptr);
 }
 
-shared_ptr<StandardCard> GoFishController::getCard(string& suite, string& value)
+shared_ptr<StandardCard> GoFishController::getCard(string& suit, string& value)
 {
     CardValue cvalue;
-    CardSuite csuite;
+    CardSuit csuit;
 
-    for (string::size_type i = 0; i < suite.length(); ++i)
+    for (string::size_type i = 0; i < suit.length(); ++i)
     {
-        suite[i] = tolower(suite[i]);
+        suit[i] = tolower(suit[i]);
     }
 
     for (string::size_type i = 0; i < value.length(); ++i)
@@ -375,39 +375,39 @@ shared_ptr<StandardCard> GoFishController::getCard(string& suite, string& value)
         cvalue = CardValue::ACE;
     }
 
-    if (suite == "heart" || suite == "hearts")
+    if (suit == "heart" || suit == "hearts")
     {
-        csuite = CardSuite::HEART;
+        csuit = CardSuit::HEART;
     }
-    else if (suite == "spade" || suite == "spades")
+    else if (suit == "spade" || suit == "spades")
     {
-        csuite = CardSuite::SPADE;
+        csuit = CardSuit::SPADE;
     }
-    else if (suite == "club" || suite == "clubs")
+    else if (suit == "club" || suit == "clubs")
     {
-        csuite = CardSuite::CLUB;
+        csuit = CardSuit::CLUB;
     }
-    else if (suite == "diamond" || suite == "diamonds")
+    else if (suit == "diamond" || suit == "diamonds")
     {
-        csuite = CardSuite::DIAMOND;
+        csuit = CardSuit::DIAMOND;
     }
     else
     {
-        csuite = CardSuite::HEART;
+        csuit = CardSuit::HEART;
     }
 
-    return shared_ptr<StandardCard>(new StandardCard(csuite, cvalue));
+    return shared_ptr<StandardCard>(new StandardCard(csuit, cvalue));
 }
 
-bool GoFishController::isValidSuite(string& suite)
+bool GoFishController::isValidSuit(string& suit)
 {
-    for (string::size_type i = 0; i < suite.length(); ++i)
+    for (string::size_type i = 0; i < suit.length(); ++i)
     {
-        suite[i] = tolower(suite[i]);
+        suit[i] = tolower(suit[i]);
     }
 
-    return suite == "heart" || suite == "hearts" || suite == "spade" || suite == "spades" ||
-        suite == "diamond" || suite == "diamonds" || suite == "club" || suite == "clubs";
+    return suit == "heart" || suit == "hearts" || suit == "spade" || suit == "spades" ||
+        suit == "diamond" || suit == "diamonds" || suit == "club" || suit == "clubs";
 }
 
 bool GoFishController::isValidValue(string& value)

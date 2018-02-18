@@ -4,7 +4,7 @@
 /**
  * A template interface representing a card.
  */
-template<class TCardSuite, class TCardValue> class Card
+template<class TCardSuit, class TCardValue> class Card
 {
 public:
     /**
@@ -13,11 +13,11 @@ public:
     virtual ~Card() {};
 
     /**
-     * Gets the suite of the card.
+     * Gets the suit of the card.
      *
-     * @return The suite of the card.
+     * @return The suit of the card.
      */
-    virtual TCardSuite getSuite() const = 0;
+    virtual TCardSuit getSuit() const = 0;
 
     /**
      * Gets the value of the card.

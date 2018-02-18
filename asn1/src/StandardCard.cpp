@@ -1,6 +1,6 @@
 #include "../include/StandardCard.h"
 
-StandardCard::StandardCard(const CardSuite suite, const CardValue value):_suite(suite),_value(value)
+StandardCard::StandardCard(const CardSuit suit, const CardValue value):_suit(suit),_value(value)
 {
 
 }
@@ -10,9 +10,9 @@ StandardCard::~StandardCard()
 
 }
 
-CardSuite StandardCard::getSuite() const
+CardSuit StandardCard::getSuit() const
 {
-    return this->_suite;
+    return this->_suit;
 }
 
 CardValue StandardCard::getValue() const {
@@ -21,7 +21,7 @@ CardValue StandardCard::getValue() const {
 
 bool StandardCard::operator==(const StandardCard& card) const
 {
-    return getSuite() == card.getSuite() && getValue() == card.getValue();
+    return getSuit() == card.getSuit() && getValue() == card.getValue();
 }
 
 bool StandardCard::operator!=(const StandardCard& card) const

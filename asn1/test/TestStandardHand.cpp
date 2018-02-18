@@ -22,9 +22,9 @@ void TestStandardHand::SetUp()
     this->_hand = shared_ptr<StandardHand>(new StandardHand());
 
     this->_ace_hearts = shared_ptr<StandardCard>(new StandardCard(
-        CardSuite::HEART, CardValue::ACE));
+        CardSuit::HEART, CardValue::ACE));
     this->_ace_spades = shared_ptr<StandardCard>(new StandardCard(
-        CardSuite::SPADE, CardValue::ACE));
+        CardSuit::SPADE, CardValue::ACE));
 }
 
 void TestStandardHand::TearDown()

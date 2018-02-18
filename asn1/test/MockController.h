@@ -28,9 +28,9 @@ public:
     MOCK_METHOD0(getWinner, shared_ptr<StandardPlayer>());
     MOCK_METHOD1(playerTurn, void(shared_ptr<StandardPlayer> player));
     MOCK_METHOD2(isValidPlayer, bool(string currentPlayerName, string& name));
-    MOCK_METHOD2(getCard, shared_ptr<StandardCard>(string& suite, string& value));
+    MOCK_METHOD2(getCard, shared_ptr<StandardCard>(string& suit, string& value));
     MOCK_METHOD1(getPlayer, shared_ptr<StandardPlayer>(string& name));
-    MOCK_METHOD1(isValidSuite, bool(string& suite));
+    MOCK_METHOD1(isValidSuit, bool(string& suit));
     MOCK_METHOD1(isValidValue, bool(string& value));
 };
 

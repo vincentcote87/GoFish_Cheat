@@ -52,7 +52,7 @@ TEST_F(TestStandardDeck, TestFullDeckSize)
 TEST_F(TestStandardDeck, TestPushToFullDeck)
 {
     shared_ptr<StandardCard> card = shared_ptr<StandardCard>
-        (new StandardCard(CardSuite::CLUB, CardValue::EIGHT));
+        (new StandardCard(CardSuit::CLUB, CardValue::EIGHT));
 
     ASSERT_THROW(_deck->pushTop(card), CardAlreadyInDeckException);
 
