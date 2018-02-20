@@ -15,9 +15,9 @@
 1.	Review the developer’s pull request and provide any feedback to so that the merge request passes the acceptance criteria given below. 
    1.	The goal is for you to have a working copy of Go Fish that you will be able to extend to include the game Cheat.
    2.	You are welcome to request other changes beyond those that would meet the criteria below. However, these requests should not prevent the merge request from finally being accepted.
+   3.	Please see the [assignment's FAQ](https://moodle.uleth.ca/201801/mod/page/view.php?id=36334) for other clarifications, or send an email to the instructor.
+   4.	If you want the instructor to look at something specific in the code you are reviewing you can use @anvik to call the instructor's attention to it.
 2.	Accept the pull request into your repository.
-
-
 
 # Areas to Review
 The following criteria are to be used for determining if the merge request is acceptable. As different developers will have different personal criteria for what “acceptable” means, this list is intended to give all students common minimum standard to meet.
