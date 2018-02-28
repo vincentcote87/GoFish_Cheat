@@ -63,21 +63,11 @@ void CheatController::init() {
 }
 
 void CheatController::deal() {
-    // unsigned int cardCount = this -> _deck.use_count();
-
-    // if (this->_players.size() < 4)
-    // {
-    //     cardCount = 7;
-    // }
-    // else
-    // {
-    //     cardCount = 5;
-    // }
     while(!_deck -> isEmpty()){
         for (auto it = this->_players.begin(); it != this->_players.end(); ++it) {
             if(_deck -> isEmpty()) {
                 break;
-             }
+            }
 
             (*it)->getHand()->addCard(this->_deck->popTop());
         }
