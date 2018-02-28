@@ -11,15 +11,19 @@ using std::shared_ptr;
 class CheatView {
 public:
 	CheatView();
-	
+
 	virtual ~CheatView();
 
 	string askForPlayerName();
 
     void nameAlreadyExists();
 
-private:
+    void showHand(shared_ptr<StandardHand> hand);
 
+    void playerTurn(const string& name);
+
+private:
+    void printCard(shared_ptr<StandardCard> card);
 };
 
 #endif

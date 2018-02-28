@@ -40,7 +40,7 @@ void CheatController::play() {
 
         shared_ptr<StandardPlayer> player = *playerIter;
 
-        // playerTurn(player);
+        playerTurn(player);
 
         ++playerIter;
     }
@@ -63,21 +63,22 @@ void CheatController::init() {
 }
 
 void CheatController::deal() {
-    unsigned int cardCount;
+    // unsigned int cardCount = this -> _deck.use_count();
 
-    if (this->_players.size() < 4)
-    {
-        cardCount = 7;
-    }
-    else
-    {
-        cardCount = 5;
-    }
+    // if (this->_players.size() < 4)
+    // {
+    //     cardCount = 7;
+    // }
+    // else
+    // {
+    //     cardCount = 5;
+    // }
+    while(!_deck -> isEmpty()){
+        for (auto it = this->_players.begin(); it != this->_players.end(); ++it) {
+            if(_deck -> isEmpty()) {
+                break;
+             }
 
-    for (auto it = this->_players.begin(); it != this->_players.end(); ++it)
-    {
-        for (unsigned int i = 0; i < cardCount; i++)
-        {
             (*it)->getHand()->addCard(this->_deck->popTop());
         }
     }
@@ -104,7 +105,7 @@ list<string> CheatController::requestNames() const {
                 this->_view->nameAlreadyExists();
             }
         }
-    } while (name.size() > 0 || names.size() < 2 || names.size() >= 5);
+    } while (name.size() > 0 || names.size() < 2 || names.size() >= 10);
 
     return names;
 }
@@ -139,4 +140,103 @@ bool CheatController::hasGameEnded() const {
 //     }
 
 //     return remaining_players < 2;
+}
+
+void CheatController::playerTurn(shared_ptr<StandardPlayer> player)
+{
+
+    // if (player->getHand()->isEmpty())
+    // {
+    //     //The player's hand is empty. Don't give them a turn.
+    //     return;
+    // }
+
+    this->_view->playerTurn(player->getName());
+
+    this->_view->showHand(player->getHand());
+
+
+
+    // string requestedName;
+
+    // unsigned int askedTimes = 0;
+
+    // do
+    // {
+    //     if (++askedTimes > 1)
+    //     {
+    //         if (player->getName() == requestedName)
+    //         {
+    //             this->_view->enteredOwnName();
+    //         }
+    //         else
+    //         {
+    //             this->_view->invalidPlayerName();
+    //         }
+    //     }
+
+    //     requestedName = this->_view->askPlayerNameToTakeFrom();
+    // }
+    // while (!isValidPlayer(player->getName(), requestedName));
+
+    // shared_ptr<StandardPlayer> askedPlayer = getPlayer(requestedName);
+
+    // string suit;
+
+    // askedTimes = 0;
+
+    // do
+    // {
+    //     if (++askedTimes > 1)
+    //     {
+    //         this->_view->invalidSuit(suit);
+    //     }
+
+    //     suit = this->_view->askForSuit();
+    // }
+    // while (!isValidSuit(suit));
+
+
+    // string value;
+
+    // askedTimes = 0;
+
+    // do
+    // {
+    //     if (++askedTimes > 1)
+    //     {
+    //             this->_view->invalidValue(value);
+    //     }
+
+    //     value = this->_view->askForValue();
+    // }
+    // while (!isValidValue(value));
+
+    // shared_ptr<StandardCard> card = getCard(suit, value);
+
+    // if (askedPlayer->getHand()->containsCard(card))
+    // {
+    //     this->_view->playerHasA(true);
+
+    //     askedPlayer->getHand()->removeCard(card);
+
+    //     player->getHand()->addCard(card);
+    // }
+    // else
+    // {
+    //     this->_view->playerHasA(false);
+
+    //     if (this->_deck->isEmpty())
+    //     {
+    //         this->_view->emptyDeck();
+    //     }
+    //     else
+    //     {
+    //         this->_view->drawCard();
+
+    //         player->getHand()->addCard(this->_deck->popTop());
+    //     }
+    // }
+
+    // this->_view->endTurn();
 }

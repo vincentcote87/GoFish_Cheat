@@ -42,6 +42,8 @@ public:
 
     virtual bool hasGameEnded() const;
 
+    virtual void playerTurn(shared_ptr<StandardPlayer> player);
+
 
 private:
 	shared_ptr<CheatView> _view;
