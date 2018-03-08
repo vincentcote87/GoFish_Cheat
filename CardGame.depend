@@ -208,3 +208,91 @@
 	"Card.h"
 	"Player.h"
 
+1520482198 source:/home/vincent/GitProjects/VincentCote/src/Card.cpp
+	"Card.h"
+
+1520482198 /home/vincent/GitProjects/VincentCote/include/Card.h
+	<iostream>
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/src/Deck.cpp
+	"Deck.h"
+	<vector>
+	<random>
+	<iostream>
+
+1520482198 /home/vincent/GitProjects/VincentCote/include/Deck.h
+	"Card.h"
+	<list>
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/src/Game.cpp
+	"Game.h"
+	"Exceptions.h"
+
+1520482198 /home/vincent/GitProjects/VincentCote/include/Game.h
+	<vector>
+	"Card.h"
+	"Deck.h"
+	"GameUI.h"
+	"Player.h"
+
+1520482198 /home/vincent/GitProjects/VincentCote/include/GameUI.h
+	<list>
+	<vector>
+	"Card.h"
+	"Player.h"
+
+1520482198 /home/vincent/GitProjects/VincentCote/include/Player.h
+	<string>
+	<list>
+	"Card.h"
+	"Exceptions.h"
+
+1520482198 /home/vincent/GitProjects/VincentCote/include/Exceptions.h
+	<stdexcept>
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/src/GameUI.cpp
+	"GameUI.h"
+	<iostream>
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/src/GoFish.cpp
+	"GoFish.h"
+
+1520482198 /home/vincent/GitProjects/VincentCote/include/GoFish.h
+	<Game.h>
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/src/GoFishUI.cpp
+	"GoFishUI.h"
+	<iostream>
+
+1520482198 /home/vincent/GitProjects/VincentCote/include/GoFishUI.h
+	"GameUI.h"
+	"Card.h"
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/src/Player.cpp
+	"Player.h"
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/test/DeckTest.cpp
+	"gtest/gtest.h"
+	"Deck.h"
+	<iostream>
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/test/GoFishTest.cpp
+	"gtest/gtest.h"
+	"MockDeck.h"
+	"MockUI.h"
+	"Deck.h"
+	"Card.h"
+	"Game.h"
+	"GoFish.h"
+
+1520482198 /home/vincent/GitProjects/VincentCote/test/MockDeck.h
+	"gmock/gmock.h"
+	"Deck.h"
+	"Card.h"
+
+1520482198 /home/vincent/GitProjects/VincentCote/test/MockUI.h
+	"GameUI.h"
+
+1520482198 source:/home/vincent/GitProjects/VincentCote/test/runTests.cpp
+	"gtest/gtest.h"
+
