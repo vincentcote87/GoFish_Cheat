@@ -50,7 +50,7 @@ $(PROGRAM):
 
 $(PROGRAM_TEST): $(TEST_DIR)/*.cpp
 	$(CXX) $(CXXFLAGS) -o $(PROGRAM_TEST) $(INCLUDE) $(TEST_DIR)/*.cpp $(SRCS) $(LINKFLAGS) $(GMOCK)
-	$(PROGRAM_TEST)
+	./$(PROGRAM_TEST)
 
 memcheck-game: $(PROGRAM)
 	rm -f
