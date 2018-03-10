@@ -62,7 +62,7 @@ public:
     /**
     * Start playing the game.
     */
-    void start();
+    virtual void start();
 
 
 
