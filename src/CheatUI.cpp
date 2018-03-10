@@ -23,7 +23,3 @@ void CheatUI::playFailed() {
 void CheatUI::playSucceeded() {
     cout << "The player had some of those cards!" << endl;
 }
-
-void CheatUI::currentFace(char face) {
-    cout<<"Do you have any "<<face<<"'s?";
-}

@@ -21,10 +21,8 @@ void Cheat::beforeCardPlayed(unsigned int playerNum, unsigned int numPlayers) {
 
     //UI shows what card face it is looking for
 
-    // ui -> currentFace(face[currentFace + 1]);
-        // ui -> currentFace('A');
-
-    //currentFace = (currentFace + 1) % 13;
+    ui -> currentFace(face[currentFace + 1]);
+    currentFace = (currentFace + 1) % 13;
 
     // playerAsked = ui->choosePlayer(playerNum, numPlayers);
 }

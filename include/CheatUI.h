@@ -12,7 +12,6 @@ public:
     unsigned int requestCard(list<Card*>* hand);
     void playFailed();
     void playSucceeded();
-  	void currentFace(char);
 };
 
 #endif 

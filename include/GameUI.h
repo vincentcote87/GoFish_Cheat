@@ -51,7 +51,7 @@ public:
     * @param os The output stream.
     * @param c The card to represent.
     */
-
+    virtual void currentFace(char face);
     friend ostream& operator<<(ostream& os, const Card& c);
 };
 

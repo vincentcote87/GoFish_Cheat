@@ -31,3 +31,7 @@ ostream& operator<<(ostream& os, const Card& c)
     return os;
 }
 
+void GameUI::currentFace(char face) {
+    cout<<"Do you have any "<<face<<"'s?";
+}
+
