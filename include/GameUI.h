@@ -54,6 +54,7 @@ public:
     virtual void currentFace(char face);
     virtual void playerName(Player* player);
     virtual unsigned int callCheat(vector<Player*> players);
+    virtual void noCardsPlayed();
     friend ostream& operator<<(ostream& os, const Card& c);
 };
 

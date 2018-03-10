@@ -15,15 +15,11 @@ void Cheat::dealCards(vector<Player*> players) {
 
 void Cheat::beforeCardPlayed(unsigned int playerNum, unsigned int numPlayers) {
 
-    if(!firstMove) {
-        //prompt players if they want to call bull shit
-    }
-
     ui -> playerName(players.at(playerNum));
     ui -> currentFace(face[currentFace + 1]);
     currentFace = (currentFace + 1) % 13;
     lastCardsPlayed.clear();
-    firstMove = false;
+    // firstMove = false;
 
 }
 
@@ -50,7 +46,10 @@ void Cheat::start() {
         int cardsDiscarded = 0;
         while(true) {
             int index = ui->requestCard(p->getHand());
-            if(index == 54 || cardsDiscarded == 3){
+            if(index == 54 && lastCardsPlayed.size() == 0) {
+                ui -> noCardsPlayed();
+            }
+            else if((index == 54 || cardsDiscarded == 3) && (lastCardsPlayed.size() != 0)){
                 break;
             }
             else {
@@ -61,6 +60,7 @@ void Cheat::start() {
                 }
             }
         }
+
         didCheat = didLastCheat();
         for(int i = 0; i < lastCardsPlayed.size(); i++) {
             discardPile.push_back(lastCardsPlayed[i]);
@@ -79,6 +79,7 @@ void Cheat::start() {
                 }
             }
         }
+
         turn = ++turn % players.size();
     }
     ui->showScores(players);

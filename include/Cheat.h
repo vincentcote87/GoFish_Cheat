@@ -25,7 +25,7 @@ protected:
     unsigned int playerAsked = -1;
 
 private:
-    bool firstMove = true;
+    // bool firstMove = true;
     bool didCheat = false;
     map<int, char> face = {{1, 'A'}, {2, '2'}, {3, '3'}, {4, '4'}, {5, '5'},
                             {6, '6'}, {7, '7'}, {8, '8'}, {9, '9'}, {10, 'T'},
