@@ -52,6 +52,8 @@ public:
     * @param c The card to represent.
     */
     virtual void currentFace(char face);
+    virtual void playerName(Player* player);
+    virtual unsigned int callCheat(vector<Player*> players);
     friend ostream& operator<<(ostream& os, const Card& c);
 };
 

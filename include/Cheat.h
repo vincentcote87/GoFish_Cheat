@@ -17,6 +17,8 @@ public:
     void dealCards(vector<Player*> p);
     void beforeCardPlayed(unsigned int playerNum, unsigned int numPlayers);
     void afterCardPlayed(Player* currentPlayer, vector<Player*> players, Card* played);
+    void start();
+    bool didLastCheat();
 
 
 protected:
@@ -24,10 +26,13 @@ protected:
 
 private:
     bool firstMove = true;
+    bool didCheat = false;
     map<int, char> face = {{1, 'A'}, {2, '2'}, {3, '3'}, {4, '4'}, {5, '5'},
                             {6, '6'}, {7, '7'}, {8, '8'}, {9, '9'}, {10, 'T'},
                             {11, 'J'}, {12, 'Q'}, {13, 'K'}};
     int currentFace = 0;
+    vector<Card*> lastCardsPlayed;
+    vector<Card*> discardPile;
 
 };
 

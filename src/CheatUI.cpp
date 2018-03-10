@@ -6,9 +6,11 @@ unsigned int CheatUI::requestCard(list<Card*>* hand) {
     unsigned int index = 0;
     for(list<Card*>::iterator i = hand->begin(); i != hand->end(); ++i) {
         Card::Rank r = (*i)->rank;
-        cout << "\tChoice " << (++index) << ": " << Card::getRank(r) << endl;
+        cout << "\tChoice " << (++index) << ") " << Card::getRank(r);
+        if(index % 2 == 0)
+            cout << endl;
     }
-    cout << "Select a choice: ";
+    cout << endl << "Select a choice (hit 55 to end your turn): ";
 
     unsigned int selection;
     cin >> selection;
@@ -17,9 +19,9 @@ unsigned int CheatUI::requestCard(list<Card*>* hand) {
 }
 
 void CheatUI::playFailed() {
-    cout << "Go Fish!" << endl;
+    cout<<"Last player did not cheat, please pick up the discard pile for yourself!"<<endl;
 }
 
 void CheatUI::playSucceeded() {
-    cout << "The player had some of those cards!" << endl;
+    cout<<"last player cheated and received the discard pile!"<<endl;
 }

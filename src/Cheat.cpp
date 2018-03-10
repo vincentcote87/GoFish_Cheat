@@ -19,50 +19,76 @@ void Cheat::beforeCardPlayed(unsigned int playerNum, unsigned int numPlayers) {
         //prompt players if they want to call bull shit
     }
 
-    //UI shows what card face it is looking for
-
+    ui -> playerName(players.at(playerNum));
     ui -> currentFace(face[currentFace + 1]);
     currentFace = (currentFace + 1) % 13;
+    lastCardsPlayed.clear();
+    firstMove = false;
 
-    // playerAsked = ui->choosePlayer(playerNum, numPlayers);
 }
 
 void Cheat::afterCardPlayed(Player* currentPlayer, vector<Player*> players, Card* played) {
-    // list<Card*>* hand = players.at(playerAsked)->getHand();
-    // list<Card*>::iterator card;
-    // list<Card*> toRemove;
-    // for(card = hand->begin(); card != hand->end(); ++card)
-    // {
-    //     if((*card)->rank == played->rank)
-    //     {
-    //         currentPlayer->getHand()->push_back(*card);
-    //         toRemove.push_back(*card);
-    //     }
-    // }
 
-    // if(toRemove.size() > 0)
-    // {
-    //     ui->playSucceeded();
-    //     //cout << "Hand before: " << hand->size() << endl;
-    //     for(list<Card*>::iterator card = toRemove.begin(); card != toRemove.end(); ++card)
-    //         hand->remove(*card);
-    //     //cout << "Hand after: " << hand->size() << endl;
+    currentPlayer -> getHand() -> remove(played);
+    lastCardsPlayed.push_back(played);
+}
 
-    //     // Check if have a set of cards
-    //     if(hasSet(currentPlayer->getHand()))
-    //     {
-    //         currentPlayer->addPoints(1);
-    //     }
-    // }
-    // else
-    // {
-    //     ui->playFailed();
-    //     Card* c = deck->getCard();
-    //     //cout << "Drew: " << *c << endl;
-    //     currentPlayer->addCard(c);
-    //     if(hasSet(currentPlayer->getHand()))
-    //     {
-    //         currentPlayer->addPoints(1);
-    //     }
-    // }
+void Cheat::start() {
+    if(players.empty())
+        throw game_init_error("No players for game");
+
+    // Deal cards
+    deck->shuffle();
+    dealCards(players);
+
+    unsigned int turn = 0;
+    Player* p = players.front();
+    while(!isOver())
+    {
+        p = players.at(turn);
+        beforeCardPlayed(turn, players.size());
+        int cardsDiscarded = 0;
+        while(true) {
+            int index = ui->requestCard(p->getHand());
+            if(index == 54 || cardsDiscarded == 3){
+                break;
+            }
+            else {
+                Card* c = p->getCard(index);
+                if(valid(c)) {
+                    cardsDiscarded++;
+                    afterCardPlayed(p, players, c);
+                }
+            }
+        }
+        didCheat = didLastCheat();
+        for(int i = 0; i < lastCardsPlayed.size(); i++) {
+            discardPile.push_back(lastCardsPlayed[i]);
+        }    
+        int callCheatIndex = ui -> callCheat(players);
+        if(callCheatIndex < players.size()) {
+            if(didCheat) {
+                ui -> playSucceeded();
+                for(int i = 0; i < discardPile.size(); i++)
+                    p -> addCard(discardPile[i]);
+            }
+            else {
+                ui -> playFailed();
+                for(int i = 0; i < discardPile.size(); i++) {
+                    players[callCheatIndex] -> addCard(discardPile[i]);
+                }
+            }
+        }
+        turn = ++turn % players.size();
+    }
+    ui->showScores(players);
+}
+
+bool Cheat::didLastCheat() {
+    for(int i = 0; i < lastCardsPlayed.size(); i++) {
+        if (lastCardsPlayed[i] -> rank != currentFace -1) {
+            return true;
+        }
+    }
+    return false;
 }
