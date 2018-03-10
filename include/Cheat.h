@@ -2,6 +2,7 @@
 #define CHEAT_H
 
 #include <Game.h>
+#include <map>
 
 class Cheat : public Game {
 public:
@@ -17,10 +18,16 @@ public:
     void beforeCardPlayed(unsigned int playerNum, unsigned int numPlayers);
     void afterCardPlayed(Player* currentPlayer, vector<Player*> players, Card* played);
 
+
 protected:
     unsigned int playerAsked = -1;
 
 private:
+    bool firstMove = true;
+    map<int, char> face = {{1, 'A'}, {2, '2'}, {3, '3'}, {4, '4'}, {5, '5'},
+                            {6, '6'}, {7, '7'}, {8, '8'}, {9, '9'}, {10, 'T'},
+                            {11, 'J'}, {12, 'Q'}, {13, 'K'}};
+    int currentFace = 0;
 
 };
 

@@ -1,6 +1,7 @@
 #include "Deck.h"
 #include "GoFishUI.h"
 #include "GoFish.h"
+#include "CheatUI.h"
 #include "Cheat.h"
 #include <iostream>
 #include <string>
@@ -35,7 +36,7 @@ int main()
         addNewPlayers(2, 5, g);
     }
     else {
-        GameUI* ui = new GoFishUI();
+        GameUI* ui = new CheatUI();
         g = new Cheat(ui, d);
         addNewPlayers(2, 10, g);
     }

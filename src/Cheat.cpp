@@ -14,6 +14,18 @@ void Cheat::dealCards(vector<Player*> players) {
 }
 
 void Cheat::beforeCardPlayed(unsigned int playerNum, unsigned int numPlayers) {
+
+    if(!firstMove) {
+        //prompt players if they want to call bull shit
+    }
+
+    //UI shows what card face it is looking for
+
+    // ui -> currentFace(face[currentFace + 1]);
+        // ui -> currentFace('A');
+
+    //currentFace = (currentFace + 1) % 13;
+
     // playerAsked = ui->choosePlayer(playerNum, numPlayers);
 }
 
