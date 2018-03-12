@@ -19,8 +19,6 @@ void Cheat::beforeCardPlayed(unsigned int playerNum, unsigned int numPlayers) {
     ui -> currentFace(face[currentFace + 1]);
     currentFace = (currentFace + 1) % 13;
     lastCardsPlayed.clear();
-    // firstMove = false;
-
 }
 
 void Cheat::afterCardPlayed(Player* currentPlayer, vector<Player*> players, Card* played) {
@@ -33,7 +31,6 @@ void Cheat::start() {
     if(players.empty())
         throw game_init_error("No players for game");
 
-    // Deal cards
     deck->shuffle();
     dealCards(players);
 
@@ -79,7 +76,9 @@ void Cheat::start() {
                 }
             }
         }
-
+        for(Player* p : players)
+            if(p->getHand()->empty())
+                p -> addPoints(1);
         turn = ++turn % players.size();
     }
     ui->showScores(players);

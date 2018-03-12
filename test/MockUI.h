@@ -15,6 +15,10 @@ public:
     MOCK_METHOD0(playSucceeded, void());
     MOCK_METHOD2(choosePlayer, unsigned int(unsigned int, unsigned int));
     MOCK_METHOD1(showScores, void(vector<Player*>));
+    MOCK_METHOD1(currentFace, void(char));
+    MOCK_METHOD1(playerName, void(Player*));
+    MOCK_METHOD1(callCheat, unsigned int(vector<Player*> players));
+    MOCK_METHOD0(noCardsPlayed, void());
 };
 
 
