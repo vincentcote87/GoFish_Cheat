@@ -45,20 +45,13 @@ TEST(CheatTest, runningGame) {
 
 	EXPECT_CALL(deck, size())
 	.Times(2)
-	.WillRepeatedly(Return(2));
+	.WillRepeatedly(Return(3));
 
 	EXPECT_CALL(deck, getCard())
-	.Times(2)
+	.Times(3)
 	.WillOnce(Return(new Card(Card::HEART, Card::ACE)))
-	.WillOnce(Return(new Card(Card::HEART, Card::TWO)));
-	// .WillOnce(Return(new Card(Card::HEART, Card::ACE)))
-	// .WillOnce(Return(new Card(Card::HEART, Card::TWO)))
-	// .WillOnce(Return(new Card(Card::HEART, Card::TWO)))
-	// .WillOnce(Return(new Card(Card::HEART, Card::FOUR)))
-	// .WillOnce(Return(new Card(Card::HEART, Card::THREE)))
-	// .WillOnce(Return(new Card(Card::HEART, Card::SIX)))
-	// .WillOnce(Return(new Card(Card::HEART, Card::FIVE)))
-	// .WillOnce(Return(new Card(Card::HEART, Card::SIX)));
+	.WillOnce(Return(new Card(Card::HEART, Card::TWO)))
+	.WillOnce(Return(new Card(Card::HEART, Card::SIX)));
 
 	EXPECT_CALL(ui, playerName(_))
 	.Times(AtLeast(1));
@@ -73,42 +66,24 @@ TEST(CheatTest, runningGame) {
 	.Times(AtLeast(1))
 	.WillOnce(Return(54))
 	.WillOnce(Return(0))
+	.WillOnce(Return(0))
 	.WillOnce(Return(54))
 	.WillOnce(Return(0))
 	.WillOnce(Return(54))
+	.WillOnce(Return(0))
 	.WillRepeatedly(Return(54));
-
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(54))
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(54))
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(54))
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(1));
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(54))
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(54))
-	// .WillOnce(Return(1))
-	// .WillOnce(Return(54));
-
 
 	EXPECT_CALL(ui, callCheat(_))
 	.Times(AtLeast(1))
-	.WillOnce(Return(3))
-	.WillOnce(Return(3))
-	.WillOnce(Return(3))
 	.WillOnce(Return(1))
-	.WillOnce(Return(2));
+	.WillOnce(Return(0))
+	.WillRepeatedly(Return(2));
 
-	// EXPECT_CALL(ui, playSucceeded())
-	// .Times(1);
+	EXPECT_CALL(ui, playSucceeded())
+	.Times(1);
 
-	// EXPECT_CALL(ui, playFailed())
-	// .Times(1);
+	EXPECT_CALL(ui, playFailed())
+	.Times(1);
 
 	EXPECT_CALL(ui, showScores(_))
 	.Times(1);
@@ -120,4 +95,14 @@ TEST(CheatTest, runningGame) {
 	game -> addPlayer(p2);
 
 	game -> start();
+
+	EXPECT_EQ(0, p1 -> getScore());
+	EXPECT_EQ(1, p2 -> getScore());
+}
+
+TEST (CheatTest, NoPlayers){
+
+    Game* game = new Cheat(nullptr, nullptr);
+    EXPECT_THROW(game->start(), game_init_error);
+
 }

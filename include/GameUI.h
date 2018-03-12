@@ -47,14 +47,33 @@ public:
     virtual void showScores(vector<Player*> players);
 
     /**
+    * Output which face value is needed for a round
+    * @param a character representing a face value
+    */
+    virtual void currentFace(char face);
+
+    /**
+    * Output the name of a player
+    * @param a Player pointer
+    */
+    virtual void playerName(Player* player);
+
+    /**
+    * Prompts users if they want to call cheat after each player takes a turn
+    * @param a vector of current Players in the game
+    */
+    virtual unsigned int callCheat(vector<Player*> players);
+
+    /**
+    * Output a message telling the player he must discard at least one card
+    */
+    virtual void noCardsPlayed();
+
+    /**
     * Output a representation of a card.
     * @param os The output stream.
     * @param c The card to represent.
     */
-    virtual void currentFace(char face);
-    virtual void playerName(Player* player);
-    virtual unsigned int callCheat(vector<Player*> players);
-    virtual void noCardsPlayed();
     friend ostream& operator<<(ostream& os, const Card& c);
 };
 
