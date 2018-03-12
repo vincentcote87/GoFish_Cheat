@@ -3,6 +3,7 @@
 
 #include <list>
 #include <vector>
+#include <typeinfo>
 #include "Card.h"
 #include "Player.h"
 

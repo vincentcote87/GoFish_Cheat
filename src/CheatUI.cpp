@@ -10,10 +10,21 @@ unsigned int CheatUI::requestCard(list<Card*>* hand) {
         if(index % 2 == 0)
             cout << endl;
     }
-    cout << endl << "Select a choice (hit 55 to end your turn): ";
+    
 
     unsigned int selection;
-    cin >> selection;
+    string strSelection;
+
+    while(true) {
+        try {
+            cout << endl << "Select a choice (hit 55 to end your turn): ";
+            cin>>strSelection;
+            selection = std::stoi(strSelection);
+            break;
+        } catch(...) {
+            cout<<"Invalid input, try again"<<endl;
+        }
+    }
 
     return selection-1;
 }

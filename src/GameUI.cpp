@@ -39,14 +39,26 @@ void GameUI::playerName(Player* player) {
 
 unsigned int GameUI::callCheat(vector<Player*> players) {
     unsigned int selection = 0;
+    string strSelection;
 
     cout<<"Does anyone want to call cheat?"<<endl;
     for(int i = 0; i < players.size(); i++) {
         cout<<"Choice "<<i<<") "<<players[i] -> name<<" wants to call cheat"<<endl;
     }
     cout<<"Choice "<<players.size()<<") Nobody calls cheat"<<endl;
-    cout<<"Your selection: ";
-    cin>>selection;
+    
+    while(true) {
+        try {
+            cout<<"Your selection: ";
+            cin>>strSelection;
+            selection = stoi(strSelection);
+            break;
+        } catch(...) {
+            cout<<"Invalid input, try again"<<endl;
+        }
+    }
+    
+    
 
     return selection;
 }
